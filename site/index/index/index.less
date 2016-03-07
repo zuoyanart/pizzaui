@@ -1,0 +1,427 @@
+@import "../../../less/variables.less";
+@color-1: #424242;
+@color-2: #3d3f41;
+@color-3: #c0c8c8;
+@color-4: #1d1d1d;
+@color-5: #f1f6fd;
+@color-6: #dadfe5;
+@color-7: #404649;
+@color-8: #303538;
+body {background-color: @color-5;}
+.index-banner-explain {
+  width: 100%;
+  height: 97px;
+  background-color: #000;
+  border-bottom: 1px solid @color-1;
+  > div {
+    width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+    > span {
+      display: inline-block;
+      width: 224px;
+      height: 24px;
+      line-height: 24px;
+      color: @color-3;
+      border-radius: 12px;
+      margin-top: 22px;
+      margin-bottom: 9px;
+      text-align: center;
+      background-color: @color-2;
+    }
+    > p {
+      i {
+        color: @bgcolor-danger;
+      }
+      &.present {
+        display: block;
+      }
+    }
+  }
+  .banner-tip {
+    display: none;
+    font-size: 24px;
+    line-height: 42px;
+    color: #fff;
+  }
+}
+
+// 图片轮转
+.index-banner {
+  width: 100%;
+  height: 420px;
+  background-color: @color-4;
+  .slide {
+    position: relative;
+    width: 1000px;
+    height: 420px;
+    margin: auto;
+    overflow: hidden;
+    > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 10000px;
+      height: 420px;
+    }
+    img {
+      float: left;
+    }
+  }
+  ul {
+    position: relative;
+    width: 1000px;
+    margin: -24px auto 0;
+    height: 50px;
+    font-size: 16px;
+    border: 1px solid @bgcolor-hold;
+    background-color: @color-4;
+    > a {
+      display: inline-block;
+      float: left;
+      width: 200px;
+      height: 48px;
+      color: #fff;
+      text-align: center;
+      &.w199 {
+        width: 199px;
+      }
+    }
+    li {
+      width: 100%;
+      height: 16px;
+      line-height: 16px;
+      margin-top: 16px;
+      border-right: 1px solid @bgcolor-hold;
+    }
+    .arrow {
+      position: absolute;
+      width: 199px;
+      height: 51px;
+      left: 0;
+      top: -18px;
+      border-right: 0;
+      background: url('./img/navbg.png') no-repeat;
+    }
+  }
+}
+
+// 主区域
+.main {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: normal;
+    margin: 0;
+  }
+  > div {
+    width: 100%;
+    padding-top: 42px;
+    margin-bottom: 27px;
+    text-align: center;
+    box-shadow: 0 0 5px #ccc;
+    border: 1px solid @color-6;
+    background-color: #fff;
+    > i {
+      display: block;
+      width: 60px;
+      height: 11px;
+      margin: 0 auto;
+      border-radius: 6px;
+      background-color: @color-2;
+    }
+    h2 {
+      font-size: 24px;
+      line-height: 72px;
+      em {
+        color: @bgcolor-success;
+      }
+    }
+  }
+  .open-world {
+    height: 790px;
+    margin-top: 55px;
+    p {
+      font-size: 16px;
+      line-height: 30px;
+      margin: 6px 0 10px;
+      em {
+        color: @bgcolor-success;
+      }
+    }
+  }
+  .even-more {
+    height: 954px;
+    .wraper {
+      position: relative;
+      float: left;
+      width: 335px;
+      height: 207px;
+      padding: 15px 10px 0;
+      margin-bottom: 21px;
+      > img {
+        margin-top: 5px;
+      }
+      > span {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        display: inline-block;
+        width: 36px;
+        height: 24px;
+        line-height: 24px;
+        color: #fff;
+        font-size: 12px;
+        background-color: @btn-bgcolor;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+      }
+      > i {
+        font-size: 24px;
+        color: @color-3;
+      }
+      > h3 {
+        line-height: 44px;
+        font-size: 16px;
+        margin-bottom: 18px;
+        em {
+          color: @bgcolor-danger;
+        }
+      }
+      > p {
+        font-size: 12px;
+        line-height: 24px;
+        > i {
+          color: @bgcolor-danger;
+        }
+      }
+      > hr {
+        position: absolute;
+        top: 212px;
+        width: 316px;
+        height: 1px;
+        border: none;
+        border-top: @border;
+      }
+      &.middle {
+        width: 328px;
+        border-left: @border;
+        border-right: @border;
+        > hr {
+          width: 306px;
+        }
+      }
+      &.bottom {
+        width: 980px;
+        height: 155px;
+        margin: -21px 0 0 10px;
+        line-height: 24px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #ccc inset;
+        background-color: @color-5;
+        border: 1px solid @color-6;
+        > h4 {
+          font-size: 16px;
+          margin: -5px 0 15px;
+        }
+        > p {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .core-team {
+    height: 834px;
+    .job {
+      font-size: 14px;
+      line-height: 24px;
+    }
+    .teammates {
+      display: inline-block;
+      width: 150px;
+      height: 150px;
+    }
+    .team-photo {
+      float: left;
+      position: relative;
+      width: 161px;
+      height: 170px;
+      margin-right: 52px;
+      margin-top: 88px;
+      background-color: @color-5;
+      > a {
+        position: absolute;
+        top: -72px;
+        left: 8px;
+      }
+      p {
+        margin-top: 100px;
+      }
+      &.mb100 {
+        margin-left: 100px;
+      }
+    }
+    .note {
+      float: left;
+      width: 100%;
+      line-height: 40px;
+      margin-top: 20px;
+      em {
+        font-size: 16px;
+      }
+      span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin: 0 5px 0 15px;
+        border: 1px solid @color;
+        border-radius: 50%;
+        vertical-align: middle;
+      }
+      i {
+        font-size: 16px;
+        line-height: 24px;
+        vertical-align: top;
+      }
+      .icon-envelope {
+        line-height: 22px;
+        padding-left: 1px;
+      }
+    }
+    .share {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      margin-top: 30px;
+      background-image: url("./img/share.png");
+      &.tencent {
+        background-position: 0 0;
+        &:hover {
+          background-position: 0 -50px;
+        }
+      }
+      &.sina {
+        background-position: -59px 0;
+        &:hover {
+          background-position: -59px -50px;
+        }
+      }
+      &.weixin {
+        position: relative;
+        background-position: -118px 0;
+        &:hover {
+          background-position: -118px -50px;
+        }
+      }
+    }
+    .weixin-erweima {
+      position: absolute;
+      display: none;
+      top: -210px;
+      left: -70px;
+      width: 200px;
+      height: 200px;
+      padding-top: 10px;
+      background-color: #fff;
+      img {
+        width: 180px;
+        height: 180px;
+      }
+    }
+  }
+}
+.index-footer {
+  position: relative;
+  width: 1000px;
+  height: 358px;
+  margin: 0 auto;
+  color: #fff;
+  text-align: center;
+  .state {
+    width: 100%;
+    height: 90px;
+    line-height: 24px;
+    border-bottom: 1px solid #fff;
+    background-color: @bgcolor-success;
+    > p {
+      font-size: 16px;
+      height: 48px;
+      padding-top: 22px;
+    }
+    > div {
+      position: absolute;
+      top: 22px;
+      right: 0;
+      > a {
+        display: inline-block;
+        width: 74px;
+        height: 24px;
+        color: #fff;
+        margin-right: 8px;
+        border-radius: 12px;
+        background-color: @btn-bgcolor;
+        &:hover {
+          background-color: @btn-bgcolor-hover;
+        }
+      }
+    }
+  }
+  .about {
+    width: 100%;
+    height: 90px;
+    line-height: 90px;
+    background-color: @color-7;
+    li {
+      float: left;
+      width: 136px;
+      &.li-1 {
+        margin-left: 275px;
+        margin-right: 15px;
+      }
+      &.li-2 {
+        border-left: 1px solid #fff;
+        border-right: 1px solid #fff;
+      }
+      &.li-3 {
+        margin-left: 15px;
+      }
+      > a {
+        color: #fff;
+        &:hover {
+          color: @btn-bgcolor;
+        }
+      }
+    }
+  }
+  .link {
+    width: 100%;
+    height: 180px;
+    padding-top: 45px;
+    padding-left: 120px;
+    background-color: @color-8;
+    li {
+      float: left;
+      height: 14px;
+      line-height: 14px;
+      padding: 0 10px;
+      border-right: 1px solid #fff;
+      &.last-link {
+        border: 0;
+      }
+      &.record-num {
+        border: 0;
+        margin-top: 16px;
+        margin-left: 300px;
+      }
+      a {
+        color: #fff;
+        &:hover {
+          color: @btn-bgcolor;
+        }
+      }
+    }
+  }
+}

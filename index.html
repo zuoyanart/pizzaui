@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8" />
+  <title>js lib test</title>
+  <style>
+    div {
+      width: 80%;
+      height: 100px;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+
+    .red {
+      border: 1px solid red;
+    }
+
+    .bg {
+      background-color: #ccc;
+    }
+
+  </style>
+
+  <!--[if lte IE 8]>
+<script src="/js/ieBetter.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+  <button type="button" name="button" id="btn1">测试</button>
+  <ul id="ul1">
+    <li class="li">
+      <h1 href="#"><span>asd</span></h1>
+    </li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+  </ul>
+
+  <div id="div1" val="aa"></div>
+  <div class="div1 red"></div>
+  <div></div>
+  <div id="div2">
+    <ul>
+      <li><a href="#">asd</a></li>
+      <li><a href="#">asd</a></li>
+      <li><a href="#">asd</a></li>
+      <li class="li"><a href="#">asd</a></li>
+    </ul>
+  </div>
+  <input type="text" value="asd" id="inp">
+
+  <h2>
+        <button type="button" name="button" onclick="asd();">插入文本</button>
+        <button type="button" name="button" onclick="asd1();">获取#div1的文本</button>
+        <button type="button" name="button" onclick="asd2();">addClass</button>
+        <button type="button" name="button" onclick="asd3();">remove div1 Class</button>
+        <button type="button" name="button" onclick="asd4();">after</button>
+        <button type="button" name="button" onclick="asd5();">append</button>
+        <button type="button" name="button" onclick="asd7();">attr</button>
+        <button type="button" name="button" onclick="asd8();">before</button>
+        <button type="button" name="button" onclick="asd9();">css选择器测试</button>
+        <button type="button" name="button" onclick="asd10();">hasClass</button>
+        <button type="button" name="button" onclick="asd11();">index</button>
+        <button type="button" name="button" onclick="asd12();">eq</button>
+        <button type="button" name="button" onclick="asd13();">has</button>
+        <button type="button" name="button" onclick="asd14();">css</button>
+        <button type="button" name="button" onclick="asd15();">next</button>
+        <button type="button" name="button" onclick="asd16();">prev</button>
+        <button type="button" name="button" onclick="asd17();">offset</button>
+        <button type="button" name="button" onclick="asd18();">scrollTop</button>
+        <button type="button" name="button" onclick="asd19();">ajax</button>
+        <button type="button" name="button" onclick="asd20();">on</button>
+        <button type="button" name="button" onclick="asd21();">on selector</button>
+        <button type="button" name="button" onclick="asd22();">on selector + namespace</button>
+        <button type="button" name="button" onclick="asd23();">off</button>
+        <button type="button" name="button" onclick="asd24();">off namespace</button>
+    </h2>
+
+</body>
+<script src="/js/pizza.dom.js" charset="utf-8"></script>
+<script src="/js/pizza.animate.js" charset="utf-8"></script>
+<script src="/js/pizza.ajax.js" charset="utf-8"></script>
+<script src="/js/pizza.data.js" charset="utf-8"></script>
+<script src="/js/pizza.event.js" charset="utf-8"></script>
+<script src="/js/velocity.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+  function asd() {
+    $("#div1").html("asd1");
+    $(".div1").html("asd2");
+    $("div").html("asd3");
+  }
+
+  function asd1() {
+    console.log($("#div1").html());
+  }
+
+  function asd2() {
+    $("div").addClass("red bg");
+  }
+
+  function asd3() {
+    $("div").removeClass("red bg").html("1233asdasd");
+  }
+
+  function asd4() {
+    $("#div1").after("<p>asd</p>").html("1233");
+  }
+
+  function asd5() {
+    $("div").append("<p>asd</p>");
+  }
+
+  function asd7() {
+    console.log($("#div1").attr("val"));
+    $(".div1").attr("a", "b");
+  }
+
+  function asd8() {
+    $("div").before("<p>12345678</p>");
+  }
+
+  function asd9() {
+    var s1 = $("#div2>ul > li > a").length;
+    console.log(s1);
+    var s2 = $("input[type=text]").length;
+    console.log(s2);
+  }
+
+  function asd10() {
+    var s1 = $(".div1").hasClass("div1");
+    console.log(s1);
+  }
+
+  function asd11() {
+    var s1 = $(".li").index();
+    console.log(s1);
+    var s2 = $(".div1").index();
+    console.log(s2);
+    var s3 = $("#div1").index();
+    console.log(s3);
+  }
+
+  function asd12() {
+    var s1 = $("li").eq(1).html("asdasd");
+  }
+
+  function asd13() {
+    $("li").has(".li").html("asdasd");
+  }
+
+  function asd14() {
+    $(".div1").css("width", "100px");
+    $("div").css({
+      width: "100px",
+      "background-color": "#ccc",
+      "border-top-left-radius": "20px"
+    });
+  }
+
+  function asd15() {
+    $(".div1").next().html("aaaasadasdasdoisud90as78d9");
+  }
+
+  function asd16() {
+    $(".div1").prev().html("aaaasadasdasdoisud90as78d9");
+  }
+
+  function asd17() {
+    console.log($("#div2>ul").offset().left);
+  }
+
+  function asd18() {
+    $("#div2>ul").scrollTop(100);
+  }
+
+  function asd19() {
+    $.ajax({
+      type: 'get',
+      data: 'a=1&b=2',
+      url: '/index1.html',
+      success: function(msg) {
+        console.log(msg);
+        console.log(msg.a);
+      },
+      error: function(msg) {
+        console.log(msg);
+      }
+    });
+  }
+
+
+
+  function asd20() {
+    $("#ul1").on("click", function() {
+      $(this).html("asd1");
+    })
+  }
+
+  function asd21() {
+    $("#ul1").on("click", "h1 span",function() {
+      $(this).html("asd2");
+    })
+  }
+
+  function asd22() {
+    $("#ul1").on("click.test", "h1 > span",function() {
+      $(this).html("asd3");
+    })
+  }
+
+  function asd23() {
+    $("#ul1").off("click");
+  }
+
+  function asd24() {
+    $("#ul1").off("click.test");
+  }
+
+</script>
+
+</html>

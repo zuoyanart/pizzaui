@@ -1,0 +1,127 @@
+@import "../../../less/variables.less";
+body{ background-color: #a5d9f6; }
+
+.reg-form {
+  table {
+    width: 726px;
+    margin: 58px auto 0;
+    border-collapse: separate;
+    border-spacing: 0 17px;
+    tr {
+      height: 33px;
+      td {
+        height: 33px;
+        &:first-child {
+          width: 90px;
+          text-align: center;
+          padding-right: 15px;
+          i {
+            font-size: 20px;
+            cursor: pointer;
+            color: @bgcolor-danger;
+            vertical-align: middle;
+          }
+        }
+        .important {
+          width: 56px;
+          height: 118px;
+          color: #fff;
+          text-align: center;
+          padding: 0 5px;
+          border-radius: 10px;
+          padding-top: 35px;
+          margin-left: 10px;
+          background-color: @bgcolor-success;
+          i {
+            color: #fff;
+          }
+        }
+        .mcren-tag {
+          background-color: #fff;
+        }
+      }
+      .right {
+        input, select {
+          width: 636px;
+          height: 31px;
+          line-height: 31px;
+        }
+      }
+    }
+  }
+  .refer-tags {
+    width: 636px;
+    height: 121px;
+    line-height: 24px;
+    border: @border;
+    border-radius: 5px;
+    padding: 24px 0 0 12px;
+    margin-left: 228px;
+    background-color: @bgcolor-place;
+    i {
+      color: @color-date;
+      margin-right: 25px;
+    }
+  }
+  > button {
+    width: 636px;
+    height: 65px;
+    margin: 72px 0 280px 228px;
+  }
+}
+
+#questionp, #sexp {
+  line-height: 31px;
+  i {
+    top: 12px;
+  }
+}
+
+.reg-success {
+  display: none;
+  position: relative;
+  width: 814px;
+  height: 450px;
+  font-size: 16px;
+  padding: 0 9px;
+  background-color: #fff;
+  h5 {
+    font-weight: normal;
+    line-height: 45px;
+    font-size: 16px;
+    margin: 0;
+  }
+  i {
+    position: absolute;
+    top: 12px;
+    right: 8px;
+    font-size: 22px;
+    cursor: pointer;
+    color: @btn-bgcolor;
+    &:hover {
+      color: @btn-bgcolor-hover;
+    }
+  }
+  > div {
+    width: 100%;
+    height: 334px;
+    padding-top: 108px;
+    padding-left: 144px;
+    background-color: @bgcolor-place;
+    p {
+      width: 510px;
+      height: 94px;
+      color: #fff;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 5px;
+      padding-top: 15px;
+      background-color: @bgcolor-danger;
+    }
+  }
+  > a {
+    margin-top: 18px;
+    margin-left: 656px;
+    line-height: 20px;
+  }
+}
