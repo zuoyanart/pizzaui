@@ -1,1 +1,21 @@
-define("rightmenu/rightmenu",function(i,t,n){var e=i("jquery"),r=i("pizzatools"),a=new function(){var i=this;i.init=function(){var i="<ul>",t="";e(".leftside").find("h2").each(function(){t=r.randomChar(15),e(this).attr("id",t),i+='<li><a href="#'+t+'">'+e(this).text()+"</a></li>"}),i+='<li><a href="#top">返回顶部</a></li></ul>',e(".rightside").html(i)}};n.exports=a});
+define('rightmenu/rightmenu', function(require, exports, module){ var $ = require('jquery');
+var tools = require('pizzatools');
+
+var rightMenu = new function() {
+    var _self = this;
+    _self.init = function() {
+        var s = '<ul>';
+        var time = '';
+        $('.leftside').find('h2').each(function() {
+            time = tools.randomChar(15);
+            $(this).attr('id', time)
+            s += '<li><a href="#'+time+'">'+$(this).text()+'</a></li>'
+        });
+        s += '<li><a href="#top">返回顶部</a></li></ul>'
+        $('.rightside').html(s);
+    }
+}
+
+module.exports = rightMenu;
+ 
+});

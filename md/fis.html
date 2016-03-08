@@ -1,47 +1,65 @@
 <h2 id="%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7">前端构建工具</h2>
-<p>面对日益复杂的前端环境以及前端技术、node技术的高速发展，前端的开发也越来越工程化，体系化，也就是出现了前端自动化构建工具。他们完成的任务目标基本是：</p>
+<p>面对日益复杂的前端环境以及前端技术、node技术的高速发展，前端的开发也越来越工程化，体系化，也就出现了前端自动化构建维护工具。他们完成的任务目标基本是：</p>
 <blockquote>
 <ul>
 <li>js，css,图片的自动压缩合并（图片也即是是自动sprite）</li>
-<li>js，css,图片自动添加域名</li>
-<li>js，css,图片自动添加md5或版本号</li>
-<li>自动监听文件变化</li>
-<li>sass/less/coffee等的自动编译</li>
-<li>支持amd/cmd的模块开发，可自动文件依赖</li>
-<li>可以部署文件</li>
-<li>网页自动刷新</li>
-<li>实时编译</li>
+<li>js，css,图片自动添加域名（静态文件的分布式部署）</li>
+<li>js，css,图片自动添加md5或版本号（缓存管理）</li>
+<li>自动监听文件变化 （自动编译，方便调试）</li>
+<li>sass/less/coffee等的自动编译 （方便扩展各种插件）</li>
+<li>支持amd/cmd的模块开发，可自动文件依赖 （js模块化开发）</li>
+<li>可以部署文件 （自动部署）</li>
+<li>网页自动刷新 （方便调试）</li>
+<li>实时编译 （方便调试）</li>
 </ul>
 </blockquote>
-<p>成熟的前端构建工具也有很多，比如：Gulp.js，Grunt，webpark, fis等等，其他构建工具本人使用不多，本文主要是对fis的前端工程化和模块化的使用做详细介绍</p>
+<p>成熟的前端构建工具也有很多，比如：Gulp.js，Grunt，webpark等等，其他构建工具本人使用不多，本文主要是对fis的前端工程化和模块化的使用做详细介绍</p>
 <h2 id="%E5%85%B3%E4%BA%8Efis">关于fis</h2>
 <p>fis是百度研发的一套前端构建工具，拥有丰富的脚手架和组件仓库。因为fis是本人接触的最早的前端构建工具，所以一直沿用到了至今。</p>
-<pre><code>    注： 本文是针对fis2，基于fis3的配置和插件将在稍后给出
+<pre><code>    注： 本文针对的版本号是fis3
 </code></pre><h2 id="fis%E7%9A%84%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%92%8C%E6%A8%A1%E5%9D%97%E5%8C%96%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6">fis的前端工程化和模块化基础插件</h2>
 <h3 id="1.%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%90%88%E5%B9%B6%E6%8F%92%E4%BB%B6">1.自动打包合并插件</h3>
 <h4 id="fis%E9%85%8D%E7%BD%AE">fis配置</h4>
-<pre><code class="hljs js"><span class="hljs-comment">//开始autoCombine可以将零散资源进行自动打包</span>
-fis.config.set(<span class="hljs-string">'settings.postpackager.simple.autoCombine'</span>, <span class="hljs-literal">true</span>);
-<span class="hljs-comment">//开启autoReflow使得在关闭autoCombine的情况下，依然会优化脚本与样式资源引用位置</span>
-fis.config.set(<span class="hljs-string">'settings.postpackager.simple.autoReflow'</span>, <span class="hljs-literal">true</span>);
-fis.config.set(<span class="hljs-string">'settings.postpackager.simple.output'</span>, <span class="hljs-string">'pkg/mcren_${hash}'</span>);
+<pre><code class="hljs js">
+<span class="hljs-comment">//打包与css sprite基础配置</span>
+fis.match(<span class="hljs-string">'::packager'</span>, {
+    <span class="hljs-comment">// npm install -g fis3-postpackager-loader</span>
+    postpackager: fis.plugin(<span class="hljs-string">'loader'</span>, {
+        resourceType: <span class="hljs-string">'mod'</span>,
+        obtainScript: <span class="hljs-literal">true</span>,
+        allInOne: <span class="hljs-literal">true</span>,
+        useInlineMap: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 资源映射表内嵌</span>
+    }),
+    packager: fis.plugin(<span class="hljs-string">'map'</span>, {<span class="hljs-comment">//常用脚本和css的合并，此不参与到页面的自动合并</span>
+      useTrack: <span class="hljs-literal">false</span>,
+      <span class="hljs-string">'pkg/base.js'</span>: [<span class="hljs-string">'/modules/jquery/*.js'</span>, <span class="hljs-string">'/modules/layer/*.js'</span>, <span class="hljs-string">'/modules/pizzalayer/*.js'</span>, <span class="hljs-string">'/modules/pizzatools/*.js'</span>],
+      <span class="hljs-string">'pkg/base-a.js'</span>: [<span class="hljs-string">'/widget/globle/*.js'</span>, <span class="hljs-string">'/modules/pizzaui/pizza.ui.js'</span>, <span class="hljs-string">'/site/common/common.js'</span>],
+      <span class="hljs-string">'pkg/base.css'</span>: [<span class="hljs-string">'/css/pizza.css'</span>, <span class="hljs-string">'/css/iconfont.css'</span>]
+    }),
+    spriter: fis.plugin(<span class="hljs-string">'csssprites'</span>, {<span class="hljs-comment">//css的雪碧合并配置</span>
+        layout: <span class="hljs-string">'matrix'</span>,
+        margin: <span class="hljs-string">'15'</span>
+    })
+});
 </code></pre>
 <h4 id="%E4%BD%9C%E7%94%A8">作用</h4>
 <p>将html中分散的静态资源进行自动合并打包</p>
 <h4 id="%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B%EF%BC%9A">应用举例：</h4>
 <p>原始文件</p>
-<pre><code class="hljs js">  &lt;link rel=<span class="hljs-string">"stylesheet"</span> type=<span class="hljs-string">"text/css"</span> href=<span class="hljs-string">"/css/mcren.css"</span>&gt;
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/site/index/index/index.css"</span>&gt;</span></span>
+<pre><code class="hljs js">  &lt;link rel=<span class="hljs-string">"stylesheet"</span> type=<span class="hljs-string">"text/css"</span> href=<span class="hljs-string">"/css/pizza.css"</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/css/iconfont.css"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/site/index/index/index.css"</span>&gt;</span></span>
 </code></pre>
 <p>转换后</p>
-<pre><code class="hljs js">   &lt;link type=<span class="hljs-string">"text/css"</span> rel=<span class="hljs-string">"stylesheet"</span> href=<span class="hljs-string">"/pkg/mcren_7636e.css"</span>&gt;
+<pre><code class="hljs js">   &lt;link type=<span class="hljs-string">"text/css"</span> rel=<span class="hljs-string">"stylesheet"</span> href=<span class="hljs-string">"/pkg/base.css"</span>&gt;
+   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/pkg/view/home/article_index.html_aio.css"</span> /&gt;</span></span>
 </code></pre>
 <p>可以看到fis会自动合并多个css到同一个文件里，这个合并不仅仅适用于css，也同样适用与js，并且将自动把css文件放入header头，js放在body结束前，有了这个功能也就具备的模块化开发的大前提</p>
 <h3 id="fis%E7%9A%84include%E5%8A%9F%E8%83%BD">fis的include功能</h3>
 <h4 id="fis%E9%85%8D%E7%BD%AE">fis配置</h4>
 <p>默认支持，无须插件</p>
 <h4 id="%E4%BD%9C%E7%94%A8">作用</h4>
-<p>大家在使用模板的时候，肯定是少不了include功能的， 即公共部分的文件引用。fis同样支持这个功能，而且借助与自动打包功能，include功能的作用也被放大的很多.(fis支持多级include)</p>
+<p>大家在使用模板引擎的时候，肯定是少不了include功能的， 即公共部分的文件引用。fis同样支持这个功能，而且借助与自动打包功能，include功能的作用也被放大的很多.(fis支持多级include)</p>
 <h4 id="%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B">应用举例</h4>
 <h5 id="%E4%B8%BB%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6">主模板文件</h5>
 <pre><code class="hljs js">&lt;!DOCTYPE html&gt;
@@ -59,7 +77,7 @@ fis.config.set(<span class="hljs-string">'settings.postpackager.simple.output'</
   <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"import"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/widget/header-small/header.html?__inline"</span>&gt;</span></span>
 </code></pre>
 <h5 id="%E6%AC%A1%E6%A8%A1%E7%89%88%E6%96%87%E4%BB%B6%EF%BC%88header-small%2Fheader.html%EF%BC%89">次模版文件（header-small/header.html）</h5>
-<pre><code class="hljs js">&lt;link rel=<span class="hljs-string">"stylesheet"</span> type=<span class="hljs-string">"text/css"</span> href=<span class="hljs-string">"header.css"</span>&gt;
+<pre><code class="hljs js">&lt;link rel=<span class="hljs-string">"stylesheet"</span> type=<span class="hljs-string">"text/css"</span> href=<span class="hljs-string">"./header.css"</span>&gt;
 <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"header"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"import"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"../loginstate/loginstate.html?__inline"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/"</span>&gt;</span>主页<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
@@ -105,20 +123,14 @@ fis.config.set(<span class="hljs-string">'settings.postpackager.simple.output'</
 <blockquote>
 <p>另外大家可以看到我模块的划分，header模块的html是引入css的，也就是说模块与模块之间以及模块和主体页面之间的css都是独立的，这样充分解耦，可以有效的解决css的维护问题，</p>
 </blockquote>
-<h3 id="%E5%9B%BE%E7%89%87%E9%9B%AA%E7%A2%A7">图片雪碧</h3>
-<h4 id="fis%E9%85%8D%E7%BD%AE">fis配置</h4>
-<pre><code class="hljs js">fis.config.set(<span class="hljs-string">'modules.spriter'</span>, <span class="hljs-string">'csssprites'</span>);
-</code></pre>
-<h4 id="%E4%BD%9C%E7%94%A8">作用</h4>
-<p>自动把css中的图片转换成雪碧图</p>
-<h4 id="%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B">应用举例</h4>
-<p>不写了，大家都懂的</p>
 <h3 id="ejs%E5%88%86%E6%9E%90%E8%83%BD%E5%8A%9B">ejs分析能力</h3>
 <h4 id="fis%E9%85%8D%E7%BD%AE">fis配置</h4>
-<pre><code class="hljs js"><span class="hljs-comment">//tell fis that `.ejs` is a js file </span>
-fis.config.set(<span class="hljs-string">'roadmap.ext.ejs'</span>, <span class="hljs-string">'js'</span>);
-<span class="hljs-comment">//tell fis that parse `.ejs` file by using `fis-parser-ejs` plugin </span>
-fis.config.set(<span class="hljs-string">'modules.parser.ejs'</span>, <span class="hljs-string">'ejs'</span>);
+<pre><code class="hljs js"><span class="hljs-comment">//npm install fis-parser-ejs</span>
+fis.match(<span class="hljs-string">"**/*.ejs"</span>, {
+        parser: fis.plugin(<span class="hljs-string">'ejs'</span>),
+        isJsLike: <span class="hljs-literal">true</span>,
+        release: <span class="hljs-literal">false</span>
+    })
 </code></pre>
 <h4 id="%E4%BD%9C%E7%94%A8">作用</h4>
 <p>大家知道，写js打印html字符串到页面的时候，如果在js里面串接html字符串是一种很难受的体验，所以fis也就有了这个插件，这个插件可以给js方法添加引用ejs模板的能力，这里ejs的使用方法和原生的完全兼容</p>
@@ -138,6 +150,180 @@ fis.config.set(<span class="hljs-string">'modules.parser.ejs'</span>, <span clas
 <h4 id="%E8%BE%93%E5%87%BA">输出</h4>
 <pre><code class="hljs js">&lt;h1&gt;我的ejs模板&lt;<span class="hljs-regexp">/h1&gt;</span>
 </code></pre>
+<h3 id="%E6%AF%8D%E7%89%88%E9%A1%B5%E6%94%AF%E6%8C%81">母版页支持</h3>
+<h4 id="fis%E9%85%8D%E7%BD%AE">fis配置</h4>
+<pre><code class="hljs js"><span class="hljs-comment">//npm install fis-parser-ejs</span>
+<span class="hljs-comment">//page下面的页面发布时去掉page文件夹</span>
+<span class="hljs-comment">//这里其实是使用了swig的母版页功能，然后通过fis编译成html页面的</span>
+fis.match(<span class="hljs-regexp">/^\/view\/(.*)$/i</span>, {
+        parser: fis.plugin(<span class="hljs-string">'swigt'</span>),
+        useCache: <span class="hljs-literal">false</span>,
+        release: <span class="hljs-string">'/$&amp;'</span>
+    })
+</code></pre>
+<h4 id="%E4%BD%9C%E7%94%A8">作用</h4>
+<p>母版页的使用场景在后台管理页面里特别常见，在后台里总是头尾和左侧管理菜单栏是不变的，其他位置在变化，如果有母版页功能支持，那么开发这些页面就变得轻而易举</p>
+<h4 id="%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B">应用举例</h4>
+<h5 id="html%E6%AF%8D%E6%9D%BF">html母板</h5>
+<pre><code class="hljs js">
+&lt;!DOCTYPE html&gt;
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"import"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/widget/meta/meta.html?__inline"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/site/common/common.css"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/site/home/base.css"</span> &gt;</span>
+    {% block css %}{% endblock %}
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>{% block title %}{% endblock %}<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"header"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"icon-pizza"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>Pizza Admin<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"user-nav"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"icon-person"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"userinfo"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"javascript:void(0);"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"loginout"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"icon-loginout"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>退出<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"search"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"search"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"searchkw"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"sidebar"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">""</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"icon-home"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>主页<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"#"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"submenu"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"icon-article"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>信息管理<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/tree"</span>&gt;</span>节点管理<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/article"</span>&gt;</span>文章管理<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/module"</span>&gt;</span>模块管理<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"#"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"submenu"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"icon-setting"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>系统管理<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/user"</span>&gt;</span>管理员管理<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                    <span class="hljs-comment">&lt;!-- &lt;li&gt;&lt;a href="/article"&gt;系统设置&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/module"&gt;&lt;/a&gt;&lt;/li&gt; --&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"main"</span>&gt;</span>
+        {% block content %}{%endblock%}
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row-fluid"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>&gt;</span><span class="coffeescript">
+  <span class="hljs-reserved">var</span> globleConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">'globle/globle'</span>);
+  globleConfig.init();
+    <span class="hljs-reserved">var</span> common = <span class="hljs-built_in">require</span>(<span class="hljs-string">'common/common'</span>);
+    common.init();
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    {% block js %}{%endblock%}
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></span>
+</code></pre>
+<h5 id="html%E6%A8%A1%E6%9D%BF">html模板</h5>
+<pre><code class="hljs js">{% extends <span class="hljs-string">"../master/index.html"</span> %} {% block css%} {% endblock %} {% block title %} 文章管理 {% endblock %}
+&lt;!----&gt;
+{% block content %}
+&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"menu"</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"checkgroup"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"checkall"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"checkall"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"checkall"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"check-all"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>全选
+  <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>|<span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/home/user/edit"</span>&gt;</span>添加<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>|<span class="hljs-tag">&lt;<span class="hljs-title">em</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"pass"</span>&gt;</span>冻结<span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span>|<span class="hljs-tag">&lt;<span class="hljs-title">em</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"remove"</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"list"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"list"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+{% endblock %}
+<span class="hljs-comment">&lt;!----&gt;</span>
+{% block js %}
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>&gt;</span><span class="dockerfile">
+  var <span class="hljs-built_ins">user</span> = require('home/<span class="hljs-built_ins">user</span>/<span class="hljs-built_ins">user</span>');
+  <span class="hljs-built_ins">user</span>.init();
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+{% endblock %}</span>
+</code></pre>
+<h4 id="%E7%94%9F%E6%88%90">生成</h4>
+<pre><code class="hljs js">&lt;!DOCTYPE html&gt;
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"renderer"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"webkit"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">http-equiv</span>=<span class="hljs-value">"X-UA-Compatible"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"IE=edge,chrome=1"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"viewport"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"</span>&gt;</span>     
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span> 文章管理 <span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">media</span>=<span class="hljs-value">"screen"</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/static/pkg/base.css"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/static/pkg/view/home/user_index.html_aio.css"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"header"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"icon-pizza"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>Pizza Admin<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"user-nav"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"icon-person"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"userinfo"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"javascript:void(0);"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"loginout"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"icon-loginout"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>退出<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"search"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"search"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"searchkw"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"sidebar"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">""</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"icon-home"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>主页<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"#"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"submenu"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"icon-article"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>信息管理<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/tree"</span>&gt;</span>节点管理<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/article"</span>&gt;</span>文章管理<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/module"</span>&gt;</span>模块管理<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"#"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"submenu"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"icon-setting"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>系统管理<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/user"</span>&gt;</span>管理员管理<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                    <span class="hljs-comment">&lt;!-- &lt;li&gt;&lt;a href="/article"&gt;系统设置&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/module"&gt;&lt;/a&gt;&lt;/li&gt; --&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"main"</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"menu"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"checkgroup"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"checkall"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"checkall"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"checkall"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"check-all"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>全选
+  <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>|<span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/home/user/edit"</span>&gt;</span>添加<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>|<span class="hljs-tag">&lt;<span class="hljs-title">em</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"pass"</span>&gt;</span>冻结<span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span>|<span class="hljs-tag">&lt;<span class="hljs-title">em</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"remove"</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"list"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"list"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row-fluid"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/static/lib/mod.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/static/pkg/base.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/static/pkg/base-a.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/static/site/home/user/user.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>&gt;</span><span class="coffeescript">
+  <span class="hljs-reserved">var</span> globleConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">'globle/globle'</span>);
+  globleConfig.init();
+    <span class="hljs-reserved">var</span> common = <span class="hljs-built_in">require</span>(<span class="hljs-string">'common/common'</span>);
+    common.init();
+
+
+  <span class="hljs-reserved">var</span> user = <span class="hljs-built_in">require</span>(<span class="hljs-string">'home/user/user'</span>);
+  user.init();
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://192.168.1.134:8132/livereload.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></span>
+</code></pre>
 <h2 id="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">目录结构</h2>
 <p>上面已经介绍了fis的模块化基础能力，现在开始实践fis的模块化开发能力。当然fis的amd/cmd，域名添加等等基础功能，这里没有叙述，您可以自行上官网查看学习</p>
 <blockquote>
@@ -154,7 +340,7 @@ fis.config.set(<span class="hljs-string">'modules.parser.ejs'</span>, <span clas
 <p>fis-conf.js //fis配置文件</p>
 </blockquote>
 </blockquote>
-<p>因为我的技术构架是： 前端 + nodejs + api，所以使用这种目录结构，用户可根据自己的项目目录自由更改。</p>
+<p>因为我的技术构架是： 前端 + nodejs + rest api，所以使用这种目录结构，用户可根据自己的项目目录自由更改。</p>
 <h3 id="%E8%AF%B4%E6%98%8E">说明</h3>
 <h4 id="modules%E7%9B%AE%E5%BD%95">modules目录</h4>
 <p>modules都是工具类，只包含js，<br>目录结构为：</p>
@@ -243,182 +429,94 @@ fis.config.set(<span class="hljs-string">'modules.parser.ejs'</span>, <span clas
 <p>由此前端模块化已经全部完成</p>
 <h2 id="%E6%89%80%E9%9C%80%E6%8F%92%E4%BB%B6">所需插件</h2>
 <ul>
-<li>fis-postprocessor-require-async</li>
+<li>fis3-postpackager-loader</li>
 <li>fis-parser-ejs</li>
-<li>fis-postpackager-autoload</li>
-<li>fis-postpackager-simple</li>
+<li>fis-parser-swigt</li>
 </ul>
-<pre><code class="hljs js">npm install 以上插件即可
+<pre><code class="hljs js">npm install -g 以上插件即可
 </code></pre>
 <h2 id="fis-conf.js">fis-conf.js</h2>
-<p>结合我的项目，本人的配置文件如下。下载本配置文件并且安装好fis后，可以直接使用。（由于项目发展时间很长，配置文件已经显得啰嗦，如果大拿研究了fis，可自行优化自己的配置文件）</p>
-<pre><code class="hljs js">fis.config.set(<span class="hljs-string">'livereload.port'</span>, <span class="hljs-number">8136</span>);
-<span class="hljs-comment">//use css sprites</span>
-fis.config.set(<span class="hljs-string">'modules.spriter'</span>, <span class="hljs-string">'csssprites'</span>);
-<span class="hljs-comment">//tell fis that `.ejs` is a js file </span>
-fis.config.set(<span class="hljs-string">'roadmap.ext.ejs'</span>, <span class="hljs-string">'js'</span>);
-<span class="hljs-comment">//tell fis that parse `.ejs` file by using `fis-parser-ejs` plugin </span>
-fis.config.set(<span class="hljs-string">'modules.parser.ejs'</span>, <span class="hljs-string">'ejs'</span>);
-<span class="hljs-comment">//set options if you need </span>
-<span class="hljs-comment">//@see https://github.com/visionmedia/ejs#options </span>
-fis.config.set(<span class="hljs-string">'settings.parser.ejs'</span>, {
-    open: <span class="hljs-string">'&lt;%'</span>,
-    close: <span class="hljs-string">'%&gt;'</span>
-});
-<span class="hljs-comment">//使用simple插件，自动应用pack的资源引用</span>
-fis.config.set(<span class="hljs-string">'modules.postpackager'</span>, <span class="hljs-string">'simple'</span>);
-<span class="hljs-comment">//开始autoCombine可以将零散资源进行自动打包</span>
-fis.config.set(<span class="hljs-string">'settings.postpackager.simple.autoCombine'</span>, <span class="hljs-literal">true</span>);
-<span class="hljs-comment">//开启autoReflow使得在关闭autoCombine的情况下，依然会优化脚本与样式资源引用位置</span>
-fis.config.set(<span class="hljs-string">'settings.postpackager.simple.autoReflow'</span>, <span class="hljs-literal">true</span>);
-fis.config.set(<span class="hljs-string">'settings.postpackager.simple.output'</span>, <span class="hljs-string">'pkg/mcren_${hash}'</span>);
+<p>结合我的项目，本人的配置文件如下。下载本配置文件并且安装好fis后，可以直接使用。</p>
+<pre><code class="hljs js"><span class="hljs-comment">//由于使用了bower，有很多非必须资源。通过set project.files对象指定需要编译的文件夹和引用的资源</span>
+<span class="hljs-comment">// fis.set('project.files', ['page/**', 'map.json', 'modules/**', 'lib']);</span>
+fis.set(<span class="hljs-string">'project.ignore'</span>, [<span class="hljs-string">'*.bat'</span>, <span class="hljs-string">'*.rar'</span>, <span class="hljs-string">'node_modules/**'</span>, <span class="hljs-string">'fis-conf.js'</span>, <span class="hljs-string">"package.json"</span>]);
 
-fis.config.merge({
-    pack: {
-        <span class="hljs-string">'pkg/base.js'</span>: [<span class="hljs-string">'/modules/jquery/*.js'</span>, <span class="hljs-string">'/modules/layer/*.js'</span>, <span class="hljs-string">'/modules/pizzalayer/*.js'</span>, <span class="hljs-string">'/modules/pizzatools/*.js'</span>],
-        <span class="hljs-string">'pkg/kindeditor.js'</span>: [<span class="hljs-string">'/widget/kindeditor/kindeditor-min.js'</span>]
-    }
+fis.set(<span class="hljs-string">'statics'</span>, <span class="hljs-string">'/www/static'</span>); <span class="hljs-comment">//static目录</span>
+fis.set(<span class="hljs-string">'url'</span>, <span class="hljs-string">'/static'</span>);
+
+<span class="hljs-comment">//FIS modjs模块化方案，您也可以选择amd/commonjs等</span>
+fis.hook(<span class="hljs-string">'commonjs'</span>, {
+    mod: <span class="hljs-string">'amd'</span>
 });
 
-fis.config.merge({
-    statics: <span class="hljs-string">'/public'</span>,
-    modules: {
-        postprocessor: {
-            js: <span class="hljs-string">"jswrapper, require-async"</span>,
-            html: <span class="hljs-string">"require-async"</span>
-        },
-        postpackager: [<span class="hljs-string">'autoload'</span>, <span class="hljs-string">'simple'</span>],
-        lint: {
-            js: <span class="hljs-string">'jshint'</span>
-        }
-    },
-    roadmap: {
-        ext: {
-
-        },
-        path: [{
-            reg: <span class="hljs-regexp">/^\/modules\/laydate\/(need|skins)\/.*\.(js|css|png|gif)$/i</span>,
-            useHash: <span class="hljs-literal">false</span>,
-            isMod: <span class="hljs-literal">false</span>,
-            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
-            url: <span class="hljs-string">'$&amp;'</span>
-
-        }, {
-            reg: <span class="hljs-regexp">/^\/widget\/kindeditor\/(lang|plugins|themes)\/.*\.(js|css|png|gif)$/i</span>,
-            useHash: <span class="hljs-literal">false</span>,
-            isMod: <span class="hljs-literal">false</span>,
-            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
-            url: <span class="hljs-string">'$&amp;'</span>
-
-        }, {
-            reg: <span class="hljs-regexp">/^\/lib\/(.*)\.(js)$/i</span>,
-            isMod: <span class="hljs-literal">false</span>,
-            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
-            url: <span class="hljs-string">'/lib/$1'</span>
-        }, {
-            reg: <span class="hljs-regexp">/^\/font\/(.*)$/i</span>,
-            isMod: <span class="hljs-literal">false</span>,
-            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
-            url: <span class="hljs-string">'/font/$1'</span>
-        }, {
-            reg: <span class="hljs-regexp">/^\/views\/(.*)$/i</span>,
-            useCache: <span class="hljs-literal">false</span>,
-            release: <span class="hljs-string">'/views/$1'</span>
-        }, {
-            <span class="hljs-comment">//一级同名组件，可以引用短路径，比如modules/jquery/juqery.js</span>
-            <span class="hljs-comment">//直接引用为var $ = require('jquery');</span>
-            reg: <span class="hljs-regexp">/^\/modules\/([^\/]+)\/(.*)\.(js)$/i</span>,
-            <span class="hljs-comment">//是组件化的，会被jswrapper包装</span>
-            isMod: <span class="hljs-literal">true</span>,
-            <span class="hljs-comment">//id为文件夹名</span>
-            id: <span class="hljs-string">'$1'</span>,
-            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
-            url: <span class="hljs-string">'$0'</span>
-        }, {
-            <span class="hljs-comment">//组件化的webpart的js</span>
-            reg: <span class="hljs-regexp">/^\/(widget|site)\/(.*)\.(js)$/i</span>,
-            isMod: <span class="hljs-literal">true</span>,
-            id: <span class="hljs-string">'$2'</span>,
-            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
-            url: <span class="hljs-string">'$&amp;'</span>
-        }, {
-            <span class="hljs-comment">//modules目录下的其他脚本文件</span>
-            reg: <span class="hljs-regexp">/^\/modules\/(.*)\.(js)$/i</span>,
-            <span class="hljs-comment">//是组件化的，会被jswrapper包装</span>
-            isMod: <span class="hljs-literal">true</span>,
-            <span class="hljs-comment">//id是去掉modules和.js后缀中间的部分</span>
-            id: <span class="hljs-string">'$1'</span>,
-            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
-            url: <span class="hljs-string">'/modules/$1'</span>
-        }, {
-            <span class="hljs-comment">//组件化的webpart的html</span>
-            reg: <span class="hljs-regexp">/^\/widget\/(.*)\.(html)/i</span>,
-            release: <span class="hljs-literal">false</span>
-        }, {
-            <span class="hljs-comment">//组件化的webpart的css</span>
-            reg: <span class="hljs-regexp">/^\/(widget|site)\/(.*)\.(css|png|jpg)/i</span>,
-            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
-            useSprite: <span class="hljs-literal">true</span>,
-            url: <span class="hljs-string">'$&amp;'</span>
-        }, {
-            <span class="hljs-comment">//其他css文件</span>
-            reg: <span class="hljs-regexp">/^(.*)\.(css|less)$/i</span>,
-            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
-            url: <span class="hljs-string">'$&amp;'</span>
-        }, {
-            <span class="hljs-comment">//前端模板</span>
-            reg: <span class="hljs-string">'**.ejs'</span>,
-            <span class="hljs-comment">//当做类js文件处理，可以识别__inline, __uri等资源定位标识</span>
-            isJsLike: <span class="hljs-literal">true</span>,
-            <span class="hljs-comment">//只是内嵌，不用发布</span>
-            release: <span class="hljs-literal">false</span>
-        }, {
-            reg: <span class="hljs-string">"map.js"</span>,
-            release: <span class="hljs-string">"${statics}/"</span>
-        }, {
-            reg: <span class="hljs-regexp">/.*\.(html|jsp|tpl|vm|htm|asp|aspx|php)$/</span>,
-            useCache: <span class="hljs-literal">false</span>,
-            release: <span class="hljs-string">'${statics}/$&amp;'</span>
-        }, {
-            reg: <span class="hljs-string">"**"</span>,
-            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
-            url: <span class="hljs-string">'$&amp;'</span>
-        }]
-    },
-    settings: {
-        postprocessor: {
-            jswrapper: {
-                type: <span class="hljs-string">'amd'</span>
-            }
-        },
-        lint: {
-            jshint: {
-                camelcase: <span class="hljs-literal">true</span>,
-                curly: <span class="hljs-literal">true</span>,
-                eqeqeq: <span class="hljs-literal">true</span>,
-                forin: <span class="hljs-literal">true</span>,
-                immed: <span class="hljs-literal">true</span>,
-                latedef: <span class="hljs-literal">true</span>,
-                newcap: <span class="hljs-literal">true</span>,
-                noarg: <span class="hljs-literal">true</span>,
-                noempty: <span class="hljs-literal">true</span>,
-                node: <span class="hljs-literal">true</span>
-            }
-        }
-    }
-});
-
-fis.config.merge({
-    roadmap: {
-        <span class="hljs-comment">//所有静态资源文件都使用 http://s1.example.com 或者 http://s2.example.com 作为域名</span>
-        domain: <span class="hljs-string">'http://static1.example.com, http://s2.example.com'</span>
-    }
-});
+<span class="hljs-comment">/*************************目录规范*****************************/</span>
+fis.match(<span class="hljs-string">"**/*"</span>, {
+        release: <span class="hljs-string">'${statics}/$&amp;'</span>
+    })
+    .match(<span class="hljs-string">"**/*.ejs"</span>, {
+        parser: fis.plugin(<span class="hljs-string">'ejs'</span>),
+        isJsLike: <span class="hljs-literal">true</span>,
+        release: <span class="hljs-literal">false</span>
+    })
+    <span class="hljs-comment">//modules下面都是模块化资源</span>
+    .match(<span class="hljs-regexp">/^\/modules\/([^\/]+)\/(.*)\.(js)$/i</span>, {
+        isMod: <span class="hljs-literal">true</span>,
+        id: <span class="hljs-string">'$1'</span>, <span class="hljs-comment">//id支持简写，去掉modules和.js后缀中间的部分</span>
+        release: <span class="hljs-string">'${statics}/$&amp;'</span>,
+        url: <span class="hljs-string">'${url}/$&amp;'</span>,
+        <span class="hljs-comment">//optimizer: fis.plugin('uglify-js')</span>
+    })
+    <span class="hljs-comment">//page下面的页面发布时去掉page文件夹</span>
+    .match(<span class="hljs-regexp">/^\/view\/(.*)$/i</span>, {
+        parser: fis.plugin(<span class="hljs-string">'swigt'</span>),
+        useCache: <span class="hljs-literal">false</span>,
+        release: <span class="hljs-string">'/$&amp;'</span>
+    })
+    .match(<span class="hljs-regexp">/^\/(widget|site)\/(.*)\.(js)$/i</span>, {
+      isMod:<span class="hljs-literal">true</span>,
+      id: <span class="hljs-string">'$2'</span>,
+       url: <span class="hljs-string">'${url}/$&amp;'</span>
+    })
+    .match(<span class="hljs-regexp">/^\/widget\/kindeditor-4.1.10\/(.*)\.(js)$/i</span>, {
+      isMod:<span class="hljs-literal">false</span>,
+       url: <span class="hljs-string">'${url}/$&amp;'</span>
+    })
+    <span class="hljs-comment">//less的mixin文件无需发布</span>
+    .match(<span class="hljs-regexp">/^(.*)mixin\.less$/i</span>, {
+        release: <span class="hljs-literal">false</span>
+    })
+    <span class="hljs-comment">//前端模板,当做类js文件处理，可以识别__inline, __uri等资源定位标识</span>
+    .match(<span class="hljs-string">"**/*.tmpl"</span>, {
+        isJsLike: <span class="hljs-literal">true</span>,
+        release: <span class="hljs-literal">false</span>
+    }).match(<span class="hljs-string">"**/*"</span>, {
+        url: <span class="hljs-string">'/static$&amp;'</span>
+    })
+    <span class="hljs-comment">//页面模板不用编译缓存</span>
+    .match(<span class="hljs-regexp">/.*\.(html|jsp|tpl|vm|htm|asp|aspx|php)$/</span>, {
+        useCache: <span class="hljs-literal">false</span>
+    });
 
 
-fis.config.merge({
-    project: {
-        exclude: <span class="hljs-regexp">/.docx|.bak$|.bat$|.md$|.rar$$|^\/less\/*|.less$|^\/modules\/pizzaui\/pizzaui\/*/i</span>
-    } <span class="hljs-comment">//排除压缩包，文档，和bak文件</span>
+
+<span class="hljs-comment">//打包与css sprite基础配置</span>
+fis.match(<span class="hljs-string">'::packager'</span>, {
+    <span class="hljs-comment">// npm install [-g] fis3-postpackager-loader</span>
+    postpackager: fis.plugin(<span class="hljs-string">'loader'</span>, {
+        resourceType: <span class="hljs-string">'mod'</span>,
+        obtainScript: <span class="hljs-literal">true</span>,
+        allInOne: <span class="hljs-literal">true</span>,
+        useInlineMap: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 资源映射表内嵌</span>
+    }),
+    packager: fis.plugin(<span class="hljs-string">'map'</span>, {
+      useTrack: <span class="hljs-literal">false</span>,
+      <span class="hljs-string">'pkg/base.js'</span>: [<span class="hljs-string">'/modules/jquery/*.js'</span>, <span class="hljs-string">'/modules/layer/*.js'</span>, <span class="hljs-string">'/modules/pizzalayer/*.js'</span>, <span class="hljs-string">'/modules/pizzatools/*.js'</span>],
+      <span class="hljs-string">'pkg/base-a.js'</span>: [<span class="hljs-string">'/widget/globle/*.js'</span>, <span class="hljs-string">'/modules/pizzaui/pizza.ui.js'</span>, <span class="hljs-string">'/site/common/common.js'</span>],
+      <span class="hljs-string">'pkg/base.css'</span>: [<span class="hljs-string">'/css/pizza.css'</span>, <span class="hljs-string">'/css/iconfont.css'</span>]
+    }),
+    spriter: fis.plugin(<span class="hljs-string">'csssprites'</span>, {
+        layout: <span class="hljs-string">'matrix'</span>,
+        margin: <span class="hljs-string">'15'</span>
+    })
 });
 </code></pre>

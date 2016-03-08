@@ -1,1 +1,26 @@
-KindEditor.plugin("pagebreak",function(e){var a=this,t="pagebreak";a.clickToolbar(t,function(){var t=a.cmd,i=t.range;a.focus(),i.enlarge(!0),t.split(!0);var r="br"==a.newlineTag||e.WEBKIT?"":'<p id="__kindeditor_tail_tag__"></p>';if(a.insertHtml('<hr style="page-break-after: always;" class="ke-pagebreak" />'+r),""!==r){var n=e("#__kindeditor_tail_tag__",a.edit.doc);i.selectNodeContents(n[0]),n.removeAttr("id"),t.select()}})});
+/*******************************************************************************
+* KindEditor - WYSIWYG HTML Editor for Internet
+* Copyright (C) 2006-2011 kindsoft.net
+*
+* @author Roddy <luolonghao@gmail.com>
+* @site http://www.kindsoft.net/
+* @licence http://www.kindsoft.net/license.php
+*******************************************************************************/
+
+KindEditor.plugin('pagebreak', function(K) {
+	var self = this, name = 'pagebreak';
+	self.clickToolbar(name, function() {
+		var cmd = self.cmd, range = cmd.range;
+		self.focus();
+		range.enlarge(true);
+		cmd.split(true);
+		var tail = self.newlineTag == 'br' || K.WEBKIT ? '' : '<p id="__kindeditor_tail_tag__"></p>';
+		self.insertHtml('<hr style="page-break-after: always;" class="ke-pagebreak" />' + tail);
+		if (tail !== '') {
+			var p = K('#__kindeditor_tail_tag__', self.edit.doc);
+			range.selectNodeContents(p[0]);
+			p.removeAttr('id');
+			cmd.select();
+		}
+	});
+});
