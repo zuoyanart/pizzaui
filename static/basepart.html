@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>名场组件使用示例</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="import" href="/widget/head/head.html?__inline">
+</head>
+
+<body>
+    <link rel="import" href="/widget/siteheader/header.html?__inline">
+    <div class="main">
+        <div class="leftside">
+            <h2>主体字体</h2>
+            （1）你希望别人搜索什么样的词组的时候会搜索到您？重要！输入代表你身份、职业、爱好……相关标签词组。其他会员可以通过搜索
+            <身份标签>找到你。（2）尽量多而准确的填写标签词组，其他会员更容易搜索到您。
+                <h2>副体字体</h2>
+                <span class="small">我的人脉</span>
+                <div class="markdown">
+                    <link rel="import" href="/md/basepart.md?__inline">
+                </div>
+                <h2>超级链接</h2>
+                <a href="#">我的人脉</a>
+                <h2>button按钮</h2>
+                <div>
+                    <button class="btn btn-primary ">默认</button>
+                    <button class="btn btn-success ">成功</button>
+                    <button class="btn btn-info ">一般信息</button>
+                    <button class="btn btn-warning ">警告</button>
+                    <button class="btn btn-danger ">危险</button>
+                </div>
+                <div class="markdown">
+                    <link rel="import" href="/md/basepart2.md?__inline">
+                </div>
+                <h2>全屏按钮</h2>
+                <div>
+                    <button class="btn btn-primary btn-block">默认</button>
+                    <button class="btn btn-success  btn-block">成功</button>
+                    <button class="btn btn-info  btn-block">一般信息</button>
+                    <button class="btn btn-warning btn-block">警告</button>
+                    <button class="btn btn-danger  btn-block">危险</button>
+                    <button class="btn btn-danger  btn-block" disabled="disabled">禁用</button>
+                </div>
+                <div class="markdown">
+                    <link rel="import" href="/md/basepart3.md?__inline">
+                </div>
+                <h2>按钮文字对齐方式</h2>
+                <div>
+                    <button class="btn btn-primary btn-block textright">按钮</button>
+                </div>
+                <div class="markdown">
+                    <link rel="import" href="/md/basepart1.md?__inline">
+                </div>
+                <h2>超链接按钮</h2>
+                <div>
+                    <a href="#" class="btn btn-primary">默认</a>
+                    <a href="#" class="btn btn-success">成功</a>
+                    <a href="#" class="btn btn-info">一般信息</a>
+                    <a href="#" class="btn btn-warning">警告</a>
+                    <a href="#" class="btn btn-danger">危险</a>
+                </div>
+                <div class="markdown">
+                    <link rel="import" href="/md/basepart4.md?__inline">
+                </div>
+                <h2>基本表单</h2>
+                <form class="form1">
+                    <div><label for="">Name：</label><input type="text"></div>
+                    <div><label for="">Password：</label><input type="password"></div>
+                    <div><label for="">Des：</label><textarea rows="6"></textarea></div>
+                    <div>
+                        <button class="btn btn-primary">确定</button>
+                        <button class="btn btn-info">重置</button>
+                    </div>
+                </form>
+                <div class="markdown">
+                    <link rel="import" href="/md/basepart5.md?__inline">
+                </div>
+                <h2>横排基本表单</h2>
+                <div>
+                    <form>
+                        <div class="form-group"><label for="">Name：</label><input type="text"></div>
+                        <div class="form-group"><label for="">Password：</label><input type="password"></div>
+                        <div class="form-group"><button class="btn btn-primary">确定</button></div>
+                    </form>
+                </div>
+                <div class="markdown">
+                    <link rel="import" href="/md/basepart6.md?__inline">
+                </div>
+                <h2>复合表单</h2>
+                <form id="form1">
+                    <div><label for="">Name：</label><input type="text" id="name" name="name"></div>
+                    <div><label for="">Password：</label><input type="password" id="password" name="password"></div>
+                    <div style="height:35px;margin-top: 20px;">
+                        <label for="">checkbox：</label>
+                        <label class="checkgroup">
+                            <input type="checkbox" id="text1" name="check">
+                            <label for="text1"></label>测试1</label>
+                        <label class="checkgroup">
+                            <input type="checkbox" id="text2" name="check">
+                            <label for="text2"></label>测试2</label>
+                        <label class="checkgroup">
+                            <input type="checkbox" id="text3" name="chexk">
+                            <label for="text3"></label>测试3</label>
+                        <label class="checkgroup">
+                            <input type="checkbox" id="text4" name="check">
+                            <label for="text4"></label>测试4</label>
+                    </div>
+                    <div style="height:35px;">
+                        <label for="">radiobox：</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text11" name="radio">
+                            <label for="text11"></label>测试1</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text21" name="radio">
+                            <label for="text21"></label>测试2</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text31" name="radio">
+                            <label for="text31"></label>测试3</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text41" name="radio">
+                            <label for="text41"></label>测试4</label>
+                    </div>
+                    <div>
+                        <label>请选择年龄：</label>
+                        <select id="age" name="age" style="width:200px;">
+                            <option value="" selected="selected">请选择年龄</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                        </select>&nbsp;&nbsp;&nbsp;&nbsp; -- &nbsp;&nbsp;&nbsp;&nbsp;
+                        <select id="age1" name="age1" style="width:200px;">
+                            <option value="" selected="selected">请选择年龄</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">Des：</label>
+                        <textarea rows="6" id="des" name="des"></textarea>
+                    </div>
+                    <div>
+                        <label>城市选择一</label>
+                        <input type="text" id="area-1" name="area-1" placeholder="支持手动输入">
+                        <input type="text" id="area-2" name="area-2" placeholder="支持手动输入">
+                    </div>
+                    <br>
+                    <div>
+                        <input type="submit" class="btn btn-primary" value="提交" />
+                        </button>
+                        <button class="btn btn-info">重置</button>
+                    </div>
+                </form>
+                <div class="markdown">
+                    <link rel="import" href="/md/basepart7.md?__inline">
+                </div>
+
+
+        </div>
+        <div class="rightside">
+            <ul>
+                <li><a href="#nav-1">主体字体</a></li>
+                <li><a href="#nav-2">副题</a></li>
+                <li><a href="#nav-3">超练级</a></li>
+                <li><a href="#nav-4">按钮</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+    require('pizzaui');
+    var $ = jQuery = require('jquery');
+    //绑定age的下拉
+   $('#age').pizzaSelect({
+   	 onChange: function(obj) {
+   	 	var value = parseInt(obj.attr('data'));
+   	 	var s = '';
+   	 	for(var i = value; i < 30; i++) {
+   	 		s += '<li data="'+i+'">'+i+'</li>';
+   	 	}
+   	 	$('#age1').parent().find('ul').html(s);
+   	 }
+   });
+   //绑定age1的下拉
+   $('#age1').pizzaSelect({});
+
+   /*表单验证*/
+
+    $("#form1").pizzaValidate({
+      'fields':{
+        '#name':{
+            'must':true,
+            'minLength':5,
+            'maxLength':12,
+            focusMsg:"请输入用户名",
+            errMsg:'用户名不能为空或用户名必须在5-12个字符之间'
+      },
+        '#password':{
+            'must':true,
+                 'minLength':5,
+            'maxLength':12,
+            focusMsg:"请输入您的手机号码",
+            errMsg:'手机号码格式不合法'
+      },
+      '#age':{
+            'must':true,
+            'minLength':1,
+            'maxLength':16,
+            focusMsg:"请输入6-16位的密码",
+            errMsg:'密码不能为空且密码须在6-16个字符之间'
+      },
+        '#age1':{
+            'must':true,
+            'minLength':1,
+            'maxLength':16,
+            focusMsg:"请输入6-16位的密码",
+            errMsg:'密码不能为空且密码须在6-16个字符之间',
+            compMsg:'两次密码不一致'
+      },
+        '#des':{
+            'must':true,
+            'reg':'int',
+            focusMsg:"请输入您的年龄",
+            errMsg:'请输入数字'
+            }
+      },
+      ajaxFun:function(data) {
+      	  alert(data);
+
+            $.ajax({
+                type:'post',
+                url:'/ajax/ch',
+                success:function(msg) {
+                    //alert(msg);
+                }
+            });
+      }
+    });
+
+   /* -- 城市选择 -- */
+   $('#area-1').pizzaArea({
+     ajaxUrl: 'index/get'
+   });
+   $('#area-2').pizzaArea({
+      type: false,
+      ajaxUrl: 'index/get'
+  });//a
+    </script>
+    <link rel="import" href="/widget/footer/footer.html?__inline">
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+define("rightmenu/rightmenu",function(i,t,n){var e=i("jquery"),r=i("pizzatools"),a=new function(){var i=this;i.init=function(){var i="<ul>",t="";e(".leftside").find("h2").each(function(){t=r.randomChar(15),e(this).attr("id",t),i+='<li><a href="#'+t+'">'+e(this).text()+"</a></li>"}),i+='<li><a href="#top">返回顶部</a></li></ul>',e(".rightside").html(i)}};n.exports=a});

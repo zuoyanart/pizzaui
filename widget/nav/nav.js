@@ -1,0 +1,1 @@
+define("nav/nav",function(a,e,n){var s=new function(){_self=this,_self.choose=function(){var a=document.location.href,e=a.split("/"),n=e[3],s=$("#navmenu > li");switch(n){case"space":$(s[1]).find("a").addClass("choose");break;default:$(s[0]).find("a").addClass("choose")}}};n.exports=s});

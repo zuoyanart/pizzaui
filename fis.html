@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>fis的使用</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+       <meta charset="utf-8">
+   <meta name="renderer" content="webkit">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <!--[if lt IE 9]>
+    <link href="./css/ie8.css" rel="stylesheet">
+   <![endif]-->
+   <link type="text/css" rel="stylesheet" href="/pkg/mcren_0d5e1.css">
+</head>
+
+<body>
+    <div class="siteheader" id="top">
+	<header>
+		<h1>
+			<a href="/" title="pizza UI">PIZZA UI</a>
+		</h1>
+		<div>
+			<a href="/">首页</a>
+			<a href="/fis.html">fis使用</a>
+			<a href="/basepart.html">基本元件</a>
+			<a href="/webpartbase.html">基本复合组件</a>
+			<a href="/webpart.html">复杂复合组件</a>
+			<a href="/static.html">静态部分</a>
+			<a href="/less.html">LESS</a>
+		</div>
+	</header>
+</div>
+
+    <div class="main">
+        <div class="leftside">
+          <div class="markdown">
+              <h2 id="%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7">前端构建工具</h2>
+<p>面对日益复杂的前端环境以及前端技术、node技术的高速发展，前端的开发也越来越工程化，体系化，也就是出现了前端自动化构建工具。他们完成的任务目标基本是：</p>
+<blockquote>
+<ul>
+<li>js，css,图片的自动压缩合并（图片也即是是自动sprite）</li>
+<li>js，css,图片自动添加域名</li>
+<li>js，css,图片自动添加md5或版本号</li>
+<li>自动监听文件变化</li>
+<li>sass/less/coffee等的自动编译</li>
+<li>支持amd/cmd的模块开发，可自动文件依赖</li>
+<li>可以部署文件</li>
+<li>网页自动刷新</li>
+<li>实时编译</li>
+</ul>
+</blockquote>
+<p>成熟的前端构建工具也有很多，比如：Gulp.js，Grunt，webpark, fis等等，其他构建工具本人使用不多，本文主要是对fis的前端工程化和模块化的使用做详细介绍</p>
+<h2 id="%E5%85%B3%E4%BA%8Efis">关于fis</h2>
+<p>fis是百度研发的一套前端构建工具，拥有丰富的脚手架和组件仓库。因为fis是本人接触的最早的前端构建工具，所以一直沿用到了至今。</p>
+<pre><code>    注： 本文是针对fis2，基于fis3的配置和插件将在稍后给出
+</code></pre><h2 id="fis%E7%9A%84%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%92%8C%E6%A8%A1%E5%9D%97%E5%8C%96%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6">fis的前端工程化和模块化基础插件</h2>
+<h3 id="1.%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%90%88%E5%B9%B6%E6%8F%92%E4%BB%B6">1.自动打包合并插件</h3>
+<h4 id="fis%E9%85%8D%E7%BD%AE">fis配置</h4>
+<pre><code class="hljs js"><span class="hljs-comment">//开始autoCombine可以将零散资源进行自动打包</span>
+fis.config.set(<span class="hljs-string">'settings.postpackager.simple.autoCombine'</span>, <span class="hljs-literal">true</span>);
+<span class="hljs-comment">//开启autoReflow使得在关闭autoCombine的情况下，依然会优化脚本与样式资源引用位置</span>
+fis.config.set(<span class="hljs-string">'settings.postpackager.simple.autoReflow'</span>, <span class="hljs-literal">true</span>);
+fis.config.set(<span class="hljs-string">'settings.postpackager.simple.output'</span>, <span class="hljs-string">'pkg/mcren_${hash}'</span>);
+</code></pre>
+<h4 id="%E4%BD%9C%E7%94%A8">作用</h4>
+<p>将html中分散的静态资源进行自动合并打包</p>
+<h4 id="%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B%EF%BC%9A">应用举例：</h4>
+<p>原始文件</p>
+<pre><code class="hljs js">  &lt;link rel=<span class="hljs-string">"stylesheet"</span> type=<span class="hljs-string">"text/css"</span> href=<span class="hljs-string">"/css/mcren.css"</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/site/index/index/index.css"</span>&gt;</span></span>
+</code></pre>
+<p>转换后</p>
+<pre><code class="hljs js">   &lt;link type=<span class="hljs-string">"text/css"</span> rel=<span class="hljs-string">"stylesheet"</span> href=<span class="hljs-string">"/pkg/mcren_7636e.css"</span>&gt;
+</code></pre>
+<p>可以看到fis会自动合并多个css到同一个文件里，这个合并不仅仅适用于css，也同样适用与js，并且将自动把css文件放入header头，js放在body结束前，有了这个功能也就具备的模块化开发的大前提</p>
+<h3 id="fis%E7%9A%84include%E5%8A%9F%E8%83%BD">fis的include功能</h3>
+<h4 id="fis%E9%85%8D%E7%BD%AE">fis配置</h4>
+<p>默认支持，无须插件</p>
+<h4 id="%E4%BD%9C%E7%94%A8">作用</h4>
+<p>大家在使用模板的时候，肯定是少不了include功能的， 即公共部分的文件引用。fis同样支持这个功能，而且借助与自动打包功能，include功能的作用也被放大的很多.(fis支持多级include)</p>
+<h4 id="%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B">应用举例</h4>
+<h5 id="%E4%B8%BB%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6">主模板文件</h5>
+<pre><code class="hljs js">&lt;!DOCTYPE html&gt;
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"description"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">""</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"keywords"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">""</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/css/mcren.css"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/site/index/index/index.css"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/lib/mod.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"import"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/widget/header-small/header.html?__inline"</span>&gt;</span></span>
+</code></pre>
+<h5 id="%E6%AC%A1%E6%A8%A1%E7%89%88%E6%96%87%E4%BB%B6%EF%BC%88header-small%2Fheader.html%EF%BC%89">次模版文件（header-small/header.html）</h5>
+<pre><code class="hljs js">&lt;link rel=<span class="hljs-string">"stylesheet"</span> type=<span class="hljs-string">"text/css"</span> href=<span class="hljs-string">"header.css"</span>&gt;
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"import"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"../loginstate/loginstate.html?__inline"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/"</span>&gt;</span>主页<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>&gt;</span><span class="coffeescript">
+    <span class="hljs-reserved">var</span> jsfunc = <span class="hljs-built_in">require</span>(<span class="hljs-string">'jsfunc/jsfunc'</span>);
+    jsfunc.init();
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></span>
+</code></pre>
+<h5 id="%E8%BD%AC%E6%8D%A2%E5%90%8E">转换后</h5>
+<pre><code class="hljs js">
+&lt;!DOCTYPE html&gt;
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"description"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">""</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"keywords"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">""</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/pkg/mcren_7636e.css"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"header"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"loginstate"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/space"</span>&gt;</span>左盐<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span> | <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"javascript:void(0);"</span>&gt;</span>退出<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"member.jpg"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"avatar"</span> /&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/"</span>&gt;</span>名场<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--省略的html代码--&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/lib/mod.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>&gt;</span><span class="coffeescript">
+    <span class="hljs-reserved">var</span> jsfunc = <span class="hljs-built_in">require</span>(<span class="hljs-string">'jsfunc/jsfunc'</span>);
+    jsfunc.init();
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span></span>
+</code></pre>
+<h4 id="%E8%AF%B4%E6%98%8E">说明</h4>
+<p>可以看到，经过fis处理后，本来应该分散的css被组合放进了head头里，js被放在了body结束前，模板的html代码也正常引入了进去。</p>
+<blockquote>
+<p>另外大家可以看到我模块的划分，header模块的html是引入css的，也就是说模块与模块之间以及模块和主体页面之间的css都是独立的，这样充分解耦，可以有效的解决css的维护问题，</p>
+</blockquote>
+<h3 id="%E5%9B%BE%E7%89%87%E9%9B%AA%E7%A2%A7">图片雪碧</h3>
+<h4 id="fis%E9%85%8D%E7%BD%AE">fis配置</h4>
+<pre><code class="hljs js">fis.config.set(<span class="hljs-string">'modules.spriter'</span>, <span class="hljs-string">'csssprites'</span>);
+</code></pre>
+<h4 id="%E4%BD%9C%E7%94%A8">作用</h4>
+<p>自动把css中的图片转换成雪碧图</p>
+<h4 id="%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B">应用举例</h4>
+<p>不写了，大家都懂的</p>
+<h3 id="ejs%E5%88%86%E6%9E%90%E8%83%BD%E5%8A%9B">ejs分析能力</h3>
+<h4 id="fis%E9%85%8D%E7%BD%AE">fis配置</h4>
+<pre><code class="hljs js"><span class="hljs-comment">//tell fis that `.ejs` is a js file </span>
+fis.config.set(<span class="hljs-string">'roadmap.ext.ejs'</span>, <span class="hljs-string">'js'</span>);
+<span class="hljs-comment">//tell fis that parse `.ejs` file by using `fis-parser-ejs` plugin </span>
+fis.config.set(<span class="hljs-string">'modules.parser.ejs'</span>, <span class="hljs-string">'ejs'</span>);
+</code></pre>
+<h4 id="%E4%BD%9C%E7%94%A8">作用</h4>
+<p>大家知道，写js打印html字符串到页面的时候，如果在js里面串接html字符串是一种很难受的体验，所以fis也就有了这个插件，这个插件可以给js方法添加引用ejs模板的能力，这里ejs的使用方法和原生的完全兼容</p>
+<h4 id="%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B">应用举例</h4>
+<h5 id="js%E5%87%BD%E6%95%B0">js函数</h5>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ejsEx</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> tpl = __inline(<span class="hljs-string">'comment.ejs'</span>);
+    <span class="hljs-keyword">var</span> s = tpl({
+        title: <span class="hljs-string">"我的ejs模板"</span>
+    });
+    <span class="hljs-built_in">console</span>.log(s);
+}
+</code></pre>
+<h4 id="ejs%E6%A8%A1%E6%9D%BF">ejs模板</h4>
+<pre><code class="hljs js">&lt;h1&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">%=</span> <span class="hljs-attribute">title</span>%&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span></span>
+</code></pre>
+<h4 id="%E8%BE%93%E5%87%BA">输出</h4>
+<pre><code class="hljs js">&lt;h1&gt;我的ejs模板&lt;<span class="hljs-regexp">/h1&gt;</span>
+</code></pre>
+<h2 id="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">目录结构</h2>
+<p>上面已经介绍了fis的模块化基础能力，现在开始实践fis的模块化开发能力。当然fis的amd/cmd，域名添加等等基础功能，这里没有叙述，您可以自行上官网查看学习</p>
+<blockquote>
+<p>根目录</p>
+<blockquote>
+<p>css //less生成的css文件<br>font //字体图标文件<br>img //公共图片<br>less<br>lib //系统类库<br>modules //常用的module</p>
+<blockquote>
+<p>jquery<br>laydate<br>layer<br>pizzalayer<br>pizzatools //网站工具类<br>pizzaui //ui组件<br>store //本地化插件<br>xss //xss过滤插件</p>
+</blockquote>
+<p>site //非模块的css，js<br>views //网页模板文件<br>widget //模块</p>
+<blockquote>
+<p>head //头部模块<br>footer //底部模块<br>nav //菜单模块</p>
+</blockquote>
+<p>fis-conf.js //fis配置文件</p>
+</blockquote>
+</blockquote>
+<p>因为我的技术构架是： 前端 + nodejs + api，所以使用这种目录结构，用户可根据自己的项目目录自由更改。</p>
+<h3 id="%E8%AF%B4%E6%98%8E">说明</h3>
+<h4 id="modules%E7%9B%AE%E5%BD%95">modules目录</h4>
+<p>modules都是工具类，只包含js，<br>目录结构为：</p>
+<pre><code class="hljs js">---根目录
+----modules
+-----jquery
+------jquery-<span class="hljs-number">1.11</span>.3.min.js
+</code></pre>
+<p>引用方式为：require(&#39;文件夹名字&#39;)</p>
+<pre><code class="hljs js"><span class="hljs-built_in">require</span>(<span class="hljs-string">'jquery'</span>)
+</code></pre>
+<h4 id="widget%E7%9B%AE%E5%BD%95">widget目录</h4>
+<p>widget目录都是网站模块，可包含js,css,html,图片<br>目录结构为：</p>
+<pre><code class="hljs js">---根目录
+----widget
+-----loginstate
+------loginstate.less
+------loginstate.js
+------loginstate.html
+------loginstate.jpg
+</code></pre>
+<p>引用方式为：</p>
+<pre><code class="hljs js">&lt;link rel=<span class="hljs-string">"import"</span> href=<span class="hljs-string">"/widget/loginstate/loginstate.html?__inline"</span>&gt;
+</code></pre>
+<h2 id="%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B">一个模块的代码示例</h2>
+<h3 id="loginstate.html%E4%BB%A3%E7%A0%81">loginstate.html代码</h3>
+<pre><code class="hljs js">&lt;link rel=<span class="hljs-string">"stylesheet"</span> type=<span class="hljs-string">"text/css"</span> href=<span class="hljs-string">"loginstate.css"</span>&gt;
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"loginstate"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/space"</span>&gt;</span>左盐<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span> | <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"javascript:void(0);"</span>&gt;</span>退出<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"member.jpg"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"avatar"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>&gt;</span><span class="coffeescript">
+    <span class="hljs-reserved">var</span> loginstate = <span class="hljs-built_in">require</span>(<span class="hljs-string">'loginstate/loginstate'</span>);
+    loginstate.init();
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></span>
+</code></pre>
+<h3 id="loginstate.js%E4%BB%A3%E7%A0%81">loginstate.js代码</h3>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> $  = <span class="hljs-built_in">require</span>(<span class="hljs-string">'jquery'</span>);
+<span class="hljs-keyword">var</span> tools = <span class="hljs-built_in">require</span>(<span class="hljs-string">'pizzatools'</span>);
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'pizzalayer'</span>);
+<span class="hljs-keyword">var</span> loginState = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> _self = <span class="hljs-keyword">this</span>;
+    <span class="hljs-comment">/**
+     * 打印登录状态
+     * @return {[type]} [description]
+     */</span>
+    _self.init = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> s = <span class="hljs-string">''</span>;
+        <span class="hljs-keyword">var</span> id = tools.getCookie(<span class="hljs-string">'id'</span>);
+        <span class="hljs-keyword">if</span>(id == <span class="hljs-string">'0'</span> ) {<span class="hljs-comment">//未登录</span>
+            s = <span class="hljs-string">'&lt;a href="/login?f='</span>+<span class="hljs-built_in">document</span>.location.href+<span class="hljs-string">'" class="btn btn-primary"&gt;登录&lt;/a&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a href="/reg" class="btn btn-primary"&gt;注册&lt;/a&gt;'</span>;
+        }
+        <span class="hljs-keyword">else</span> {
+            s = <span class="hljs-string">'&lt;a href="/space"&gt;'</span> + tools.getCookie(<span class="hljs-string">'nickname'</span>) + <span class="hljs-string">'&lt;/a&gt; | &lt;a href="javascript:void(0);" onclick="loginstate.loginout();"&gt;退出&lt;/a&gt;&lt;img src="'</span> + tools.siteData.url.avatar + tools.getCookie(<span class="hljs-string">'avatar'</span>) + <span class="hljs-string">'!v1" id="avatar" /&gt;'</span>;
+        }
+        $(<span class="hljs-string">'.loginstate'</span>).html(s);
+    }
+    <span class="hljs-comment">/**
+     * 退出登录
+     * @return {[type]} [description]
+     */</span>
+    _self.loginout = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        $.ajax({
+            type:<span class="hljs-string">'GET'</span>,
+            url:<span class="hljs-string">'/index/loginout'</span>,
+            success: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">msg</span>) </span>{
+                <span class="hljs-keyword">var</span> url = <span class="hljs-built_in">document</span>.location.href.split(<span class="hljs-string">'/'</span>);
+                <span class="hljs-keyword">if</span>(url[<span class="hljs-number">3</span>] == <span class="hljs-string">'space'</span>) {
+                    <span class="hljs-built_in">document</span>.location.href = <span class="hljs-string">'/'</span>;
+                }
+                <span class="hljs-keyword">else</span> {
+                    <span class="hljs-built_in">document</span>.location.reload();
+                }
+            }
+        })
+    }
+}
+<span class="hljs-built_in">module</span>.exports = loginState;
+</code></pre>
+<h3 id="index.html%E4%BB%A3%E7%A0%81">index.html代码</h3>
+<pre><code class="hljs js">&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"header"</span>&gt;
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"import"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/widget/loginstate/loginstate.html?__inline"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/"</span>&gt;</span>主页<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
+</code></pre>
+<p>由此前端模块化已经全部完成</p>
+<h2 id="%E6%89%80%E9%9C%80%E6%8F%92%E4%BB%B6">所需插件</h2>
+<ul>
+<li>fis-postprocessor-require-async</li>
+<li>fis-parser-ejs</li>
+<li>fis-postpackager-autoload</li>
+<li>fis-postpackager-simple</li>
+</ul>
+<pre><code class="hljs js">npm install 以上插件即可
+</code></pre>
+<h2 id="fis-conf.js">fis-conf.js</h2>
+<p>结合我的项目，本人的配置文件如下。下载本配置文件并且安装好fis后，可以直接使用。（由于项目发展时间很长，配置文件已经显得啰嗦，如果大拿研究了fis，可自行优化自己的配置文件）</p>
+<pre><code class="hljs js">fis.config.set(<span class="hljs-string">'livereload.port'</span>, <span class="hljs-number">8136</span>);
+<span class="hljs-comment">//use css sprites</span>
+fis.config.set(<span class="hljs-string">'modules.spriter'</span>, <span class="hljs-string">'csssprites'</span>);
+<span class="hljs-comment">//tell fis that `.ejs` is a js file </span>
+fis.config.set(<span class="hljs-string">'roadmap.ext.ejs'</span>, <span class="hljs-string">'js'</span>);
+<span class="hljs-comment">//tell fis that parse `.ejs` file by using `fis-parser-ejs` plugin </span>
+fis.config.set(<span class="hljs-string">'modules.parser.ejs'</span>, <span class="hljs-string">'ejs'</span>);
+<span class="hljs-comment">//set options if you need </span>
+<span class="hljs-comment">//@see https://github.com/visionmedia/ejs#options </span>
+fis.config.set(<span class="hljs-string">'settings.parser.ejs'</span>, {
+    open: <span class="hljs-string">'&lt;%'</span>,
+    close: <span class="hljs-string">'%&gt;'</span>
+});
+<span class="hljs-comment">//使用simple插件，自动应用pack的资源引用</span>
+fis.config.set(<span class="hljs-string">'modules.postpackager'</span>, <span class="hljs-string">'simple'</span>);
+<span class="hljs-comment">//开始autoCombine可以将零散资源进行自动打包</span>
+fis.config.set(<span class="hljs-string">'settings.postpackager.simple.autoCombine'</span>, <span class="hljs-literal">true</span>);
+<span class="hljs-comment">//开启autoReflow使得在关闭autoCombine的情况下，依然会优化脚本与样式资源引用位置</span>
+fis.config.set(<span class="hljs-string">'settings.postpackager.simple.autoReflow'</span>, <span class="hljs-literal">true</span>);
+fis.config.set(<span class="hljs-string">'settings.postpackager.simple.output'</span>, <span class="hljs-string">'pkg/mcren_${hash}'</span>);
+
+fis.config.merge({
+    pack: {
+        <span class="hljs-string">'pkg/base.js'</span>: [<span class="hljs-string">'/modules/jquery/*.js'</span>, <span class="hljs-string">'/modules/layer/*.js'</span>, <span class="hljs-string">'/modules/pizzalayer/*.js'</span>, <span class="hljs-string">'/modules/pizzatools/*.js'</span>],
+        <span class="hljs-string">'pkg/kindeditor.js'</span>: [<span class="hljs-string">'/widget/kindeditor/kindeditor-min.js'</span>]
+    }
+});
+
+fis.config.merge({
+    statics: <span class="hljs-string">'/public'</span>,
+    modules: {
+        postprocessor: {
+            js: <span class="hljs-string">"jswrapper, require-async"</span>,
+            html: <span class="hljs-string">"require-async"</span>
+        },
+        postpackager: [<span class="hljs-string">'autoload'</span>, <span class="hljs-string">'simple'</span>],
+        lint: {
+            js: <span class="hljs-string">'jshint'</span>
+        }
+    },
+    roadmap: {
+        ext: {
+
+        },
+        path: [{
+            reg: <span class="hljs-regexp">/^\/modules\/laydate\/(need|skins)\/.*\.(js|css|png|gif)$/i</span>,
+            useHash: <span class="hljs-literal">false</span>,
+            isMod: <span class="hljs-literal">false</span>,
+            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
+            url: <span class="hljs-string">'$&amp;'</span>
+
+        }, {
+            reg: <span class="hljs-regexp">/^\/widget\/kindeditor\/(lang|plugins|themes)\/.*\.(js|css|png|gif)$/i</span>,
+            useHash: <span class="hljs-literal">false</span>,
+            isMod: <span class="hljs-literal">false</span>,
+            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
+            url: <span class="hljs-string">'$&amp;'</span>
+
+        }, {
+            reg: <span class="hljs-regexp">/^\/lib\/(.*)\.(js)$/i</span>,
+            isMod: <span class="hljs-literal">false</span>,
+            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
+            url: <span class="hljs-string">'/lib/$1'</span>
+        }, {
+            reg: <span class="hljs-regexp">/^\/font\/(.*)$/i</span>,
+            isMod: <span class="hljs-literal">false</span>,
+            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
+            url: <span class="hljs-string">'/font/$1'</span>
+        }, {
+            reg: <span class="hljs-regexp">/^\/views\/(.*)$/i</span>,
+            useCache: <span class="hljs-literal">false</span>,
+            release: <span class="hljs-string">'/views/$1'</span>
+        }, {
+            <span class="hljs-comment">//一级同名组件，可以引用短路径，比如modules/jquery/juqery.js</span>
+            <span class="hljs-comment">//直接引用为var $ = require('jquery');</span>
+            reg: <span class="hljs-regexp">/^\/modules\/([^\/]+)\/(.*)\.(js)$/i</span>,
+            <span class="hljs-comment">//是组件化的，会被jswrapper包装</span>
+            isMod: <span class="hljs-literal">true</span>,
+            <span class="hljs-comment">//id为文件夹名</span>
+            id: <span class="hljs-string">'$1'</span>,
+            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
+            url: <span class="hljs-string">'$0'</span>
+        }, {
+            <span class="hljs-comment">//组件化的webpart的js</span>
+            reg: <span class="hljs-regexp">/^\/(widget|site)\/(.*)\.(js)$/i</span>,
+            isMod: <span class="hljs-literal">true</span>,
+            id: <span class="hljs-string">'$2'</span>,
+            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
+            url: <span class="hljs-string">'$&amp;'</span>
+        }, {
+            <span class="hljs-comment">//modules目录下的其他脚本文件</span>
+            reg: <span class="hljs-regexp">/^\/modules\/(.*)\.(js)$/i</span>,
+            <span class="hljs-comment">//是组件化的，会被jswrapper包装</span>
+            isMod: <span class="hljs-literal">true</span>,
+            <span class="hljs-comment">//id是去掉modules和.js后缀中间的部分</span>
+            id: <span class="hljs-string">'$1'</span>,
+            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
+            url: <span class="hljs-string">'/modules/$1'</span>
+        }, {
+            <span class="hljs-comment">//组件化的webpart的html</span>
+            reg: <span class="hljs-regexp">/^\/widget\/(.*)\.(html)/i</span>,
+            release: <span class="hljs-literal">false</span>
+        }, {
+            <span class="hljs-comment">//组件化的webpart的css</span>
+            reg: <span class="hljs-regexp">/^\/(widget|site)\/(.*)\.(css|png|jpg)/i</span>,
+            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
+            useSprite: <span class="hljs-literal">true</span>,
+            url: <span class="hljs-string">'$&amp;'</span>
+        }, {
+            <span class="hljs-comment">//其他css文件</span>
+            reg: <span class="hljs-regexp">/^(.*)\.(css|less)$/i</span>,
+            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
+            url: <span class="hljs-string">'$&amp;'</span>
+        }, {
+            <span class="hljs-comment">//前端模板</span>
+            reg: <span class="hljs-string">'**.ejs'</span>,
+            <span class="hljs-comment">//当做类js文件处理，可以识别__inline, __uri等资源定位标识</span>
+            isJsLike: <span class="hljs-literal">true</span>,
+            <span class="hljs-comment">//只是内嵌，不用发布</span>
+            release: <span class="hljs-literal">false</span>
+        }, {
+            reg: <span class="hljs-string">"map.js"</span>,
+            release: <span class="hljs-string">"${statics}/"</span>
+        }, {
+            reg: <span class="hljs-regexp">/.*\.(html|jsp|tpl|vm|htm|asp|aspx|php)$/</span>,
+            useCache: <span class="hljs-literal">false</span>,
+            release: <span class="hljs-string">'${statics}/$&amp;'</span>
+        }, {
+            reg: <span class="hljs-string">"**"</span>,
+            release: <span class="hljs-string">'${statics}/$&amp;'</span>,
+            url: <span class="hljs-string">'$&amp;'</span>
+        }]
+    },
+    settings: {
+        postprocessor: {
+            jswrapper: {
+                type: <span class="hljs-string">'amd'</span>
+            }
+        },
+        lint: {
+            jshint: {
+                camelcase: <span class="hljs-literal">true</span>,
+                curly: <span class="hljs-literal">true</span>,
+                eqeqeq: <span class="hljs-literal">true</span>,
+                forin: <span class="hljs-literal">true</span>,
+                immed: <span class="hljs-literal">true</span>,
+                latedef: <span class="hljs-literal">true</span>,
+                newcap: <span class="hljs-literal">true</span>,
+                noarg: <span class="hljs-literal">true</span>,
+                noempty: <span class="hljs-literal">true</span>,
+                node: <span class="hljs-literal">true</span>
+            }
+        }
+    }
+});
+
+fis.config.merge({
+    roadmap: {
+        <span class="hljs-comment">//所有静态资源文件都使用 http://s1.example.com 或者 http://s2.example.com 作为域名</span>
+        domain: <span class="hljs-string">'http://static1.example.com, http://s2.example.com'</span>
+    }
+});
+
+
+fis.config.merge({
+    project: {
+        exclude: <span class="hljs-regexp">/.docx|.bak$|.bat$|.md$|.rar$$|^\/less\/*|.less$|^\/modules\/pizzaui\/pizzaui\/*/i</span>
+    } <span class="hljs-comment">//排除压缩包，文档，和bak文件</span>
+});
+</code></pre>
+
+          </div>
+        </div>
+        <div class="rightside">
+
+        </div>
+    </div>
+  <script type="text/javascript" charset="utf-8" src="/lib/mod.js"></script>
+<script type="text/javascript" charset="utf-8" src="/pkg/base.js"></script>
+<script type="text/javascript" charset="utf-8" src="/widget/rightmenu/rightmenu.js"></script>
+<script>
+var rightmenu = require('rightmenu/rightmenu');
+rightmenu.init();
+</script>
+
+<script type="text/javascript" charset="utf-8" src="http://192.168.1.43:81314/livereload.js"></script></body>
+</html>

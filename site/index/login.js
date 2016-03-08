@@ -1,0 +1,1 @@
+define("index/login",function(i){i("jquery"),i("pizzalayer");i("pizzaui");!new function(){var i=this;i.init=function(){},i.login=function(){}}});
