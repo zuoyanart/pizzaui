@@ -1,15 +1,11 @@
-@import "variables.less";
-.input-focus(@color: @input-shadow-color) {
-    box-shadow: 0 0 8px @color;
-}
 
 button,
 input,
 select,
 textarea {
-    font-family: @font-family;
+    font-family: $font-family;
     font-family: 'STXihei', '\534E\6587\7EC6\9ED1', 'Microsoft YaHei', '\5FAE\8F6F\96C5\9ED1', 'SimSun', '\5B8B\4F53', 'Arial';
-    font-size: @font-size;
+    font-size: $font-size;
     margin: 0;
 }
 
@@ -32,36 +28,36 @@ input[type="color"] {
     width: 100%;
     -webkit-appearance: none;
     vertical-align: middle; //本身无意义，解决多余margin的浏览器bug
-    padding: 3px 8px;
-    padding: 1px 8px\9;
-    background-color: @input-bg;
-    border: @border;
+    padding: 6px 8px;
+    padding: 4px 8px\9;
+    background-color: $input-bg;
+    border: $border;
     border-radius: 3px;
     outline: none;
     resize: none;
     &:focus {
-        .input-focus();
+        @include input-focus();
     }
 }
 
 //全局placeholder颜色
 .placeholder {
-    color: @input-placeholder-color;
+    color: $input-placeholder-color;
 }
 
 input::-moz-placeholder {
     font-size: 14px;
-    color: @input-placeholder-color;
+    color: $input-placeholder-color;
 }
 
 input::-webkit-input-placeholder {
     font-size: 14px;
-    color: @input-placeholder-color;
+    color: $input-placeholder-color;
 }
 
 input::-ms-input-placeholder {
     font-size: 14px;
-    color: @input-placeholder-color;
+    color: $input-placeholder-color;
 }
 
 textarea {
@@ -70,7 +66,7 @@ textarea {
     word-break: break-all;
     margin: 0;
     &:focus {
-        .input-focus();
+        @include input-focus();
     }
 }
 
@@ -174,8 +170,8 @@ form,
         & > label {
             display: inline-block;
             width: 100px;
-            height: @input-height;
-            line-height: @input-height;
+            height: $input-height;
+            line-height: $input-height;
             position: absolute;
             left: 0px;
             text-align: right;
@@ -220,9 +216,9 @@ form,
     *display: inline;
     *float: left;
     *margin-right: 10px;
-    background: @input-bg;
+    background: $input-bg;
     border-radius: 3px;
-    border: 1px solid @input-border-color;
+    border: 1px solid $input-border-color;
     .select-button {
         width: 100%;
         height: 28px;
@@ -286,37 +282,37 @@ form,
     }
     .select-list ul li.selected,
     .select-list ul li:hover {
-        background: @bgcolor-info;
+        background: $bgcolor-info;
     }
 }
 
 //表单验证提示
 .validate-err {
-    border-color: @bgcolor-danger!important;
+    border-color: $bgcolor-danger!important;
 }
 
 .layer-pizza-tip {
   & > .layui-layer-content{
-    border-color: @bgcolor-success!important;
-    background-color: @bgcolor-success!important;
+    border-color: $bgcolor-success!important;
+    background-color: $bgcolor-success!important;
     & > .layui-layer-TipsT,.layui-layer-TipsB{
-      border-right-color: @bgcolor-success!important;
+      border-right-color: $bgcolor-success!important;
     }
   }
 }
 
 .layer-pizza-tip-danger {
   & > .layui-layer-content{
-    border-color: @bgcolor-danger!important;
-    background-color: @bgcolor-danger!important;
+    border-color: $bgcolor-danger!important;
+    background-color: $bgcolor-danger!important;
     & > .layui-layer-TipsT,.layui-layer-TipsB{
-      border-right-color: @bgcolor-danger!important;
+      border-right-color: $bgcolor-danger!important;
     }
   }
 }
 
 // =======================
-// 海涛(success99@126.com)
+// 海涛(success99$126.com)
 //========================
 //城市选择
 .area-wrap-1234 {
@@ -336,7 +332,7 @@ form,
         overflow: auto;
         z-index: 2000000;
         clear: both;
-        border: 1px solid @input-border-color;
+        border: 1px solid $input-border-color;
         li {
             float: left;
             padding: 3px 5px;
@@ -344,42 +340,11 @@ form,
             margin-right: 15px;
             cursor: pointer;
             &:hover {
-                color: @color-a-hover;
+                color: $color-a-hover;
             }
         }
         .choice {
-            color: @color-a-hover;
+            color: $color-a-hover;
         }
     }
 }
-
-//弹窗表单设计
-.form-pop {
-    width: 100%;
-    height: 30px;
-    margin-top: 122px;
-    & > li {
-        position: relative;
-        width: 416px;
-        margin: 10px auto;
-        & > select,
-        textarea,
-        input[type="text"] {
-            width: 280px;
-        }
-    }
-    & > .bottom-btn {
-        height: 60px;
-        width: 100%;
-        background-color: @bgcolor-place;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        text-align: right;
-        padding-top: 15px;
-        padding-right: 20px;
-        z-index: 1000000;
-    }
-}
-
-//

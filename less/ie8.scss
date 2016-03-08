@@ -1,4 +1,4 @@
-@import "variables.less";
+@import "variables";
 
 //reset checkbox
 .checkgroup {
@@ -18,10 +18,10 @@
 		background-color: #fff;
 	}
 	&.green p {
-		background-color: @bgcolor-info;
+		background-color: $bgcolor-info;
 	}
 	&.red p {
-		background-color: @bgcolor-danger;
+		background-color: $bgcolor-danger;
 	}
   p {
     top: 0!important;
