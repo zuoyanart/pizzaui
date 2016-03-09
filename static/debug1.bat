@@ -1,2 +1,2 @@
 @ECHO ON
-fis  release -wL  -d ../ -p -o
+fis  release -w  -d ../ -p -o
