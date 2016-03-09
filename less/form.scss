@@ -40,6 +40,9 @@ input[type="color"] {
     }
 }
 
+select {
+  padding: 3px 8px;
+}
 //全局placeholder颜色
 .placeholder {
     color: $input-placeholder-color;
@@ -161,8 +164,7 @@ input[type="radio"] {
 }
 
 //单行显示
-form,
-.form {
+form,.form {
     & > div {
         position: relative;
         margin-top: 10px;
@@ -236,7 +238,8 @@ form,
     }
     .select-down {
         position: absolute;
-        top: 9px;
+        top: 50%;
+        margin-top: -3px;
         right: 12px;
         height: 0;
         width: 0;
@@ -257,7 +260,7 @@ form,
         z-index: 2000000;
         position: absolute;
         left: -1px;
-        top: 26px;
+        top: 35px;
         overflow: hidden;
     }
     .select-list ul {

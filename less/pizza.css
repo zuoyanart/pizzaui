@@ -291,9 +291,6 @@ input[type="color"] {
   input[type="color"]:focus {
     box-shadow: 0 0 8px rgba(102, 175, 233, 0.6); }
 
-select {
-  padding: 3px 8px; }
-
 .placeholder {
   color: #999; }
 
@@ -389,11 +386,13 @@ input[type="radio"] {
   height: 12px;
   width: 12px; }
 
-form > div, .form > div {
+form > div,
+.form > div {
   position: relative;
   margin-top: 10px;
   padding: 0 0 0 100px; }
-  form > div > label, .form > div > label {
+  form > div > label,
+  .form > div > label {
     display: inline-block;
     width: 100px;
     height: 30px;
@@ -405,20 +404,25 @@ form > div, .form > div {
     font-weight: bold;
     margin-bottom: 5px; }
   form > div > label.checkgroup,
-  form > div label.radiogroup, .form > div > label.checkgroup,
+  form > div label.radiogroup,
+  .form > div > label.checkgroup,
   .form > div label.radiogroup {
     position: relative;
     width: auto; }
-form > div:first-child, .form > div:first-child {
+form > div:first-child,
+.form > div:first-child {
   margin-top: 0; }
-form > div.form-group, .form > div.form-group {
+form > div.form-group,
+.form > div.form-group {
   display: inline-block;
   padding: 0;
   margin-top: 0px;
   vertical-align: middle; }
-  form > div.form-group > input, .form > div.form-group > input {
+  form > div.form-group > input,
+  .form > div.form-group > input {
     width: auto !important; }
-  form > div.form-group > label, .form > div.form-group > label {
+  form > div.form-group > label,
+  .form > div.form-group > label {
     margin: 0 0 3px 0;
     position: relative;
     left: 0;
@@ -453,8 +457,7 @@ form > div.form-group, .form > div.form-group {
     text-overflow: ellipsis; }
   .btn-select .select-down {
     position: absolute;
-    top: 50%;
-    margin-top: -3px;
+    top: 9px;
     right: 12px;
     height: 0;
     width: 0;
@@ -474,7 +477,7 @@ form > div.form-group, .form > div.form-group {
     z-index: 2000000;
     position: absolute;
     left: -1px;
-    top: 35px;
+    top: 26px;
     overflow: hidden; }
   .btn-select .select-list ul {
     margin: 0;
@@ -568,8 +571,7 @@ form > div.form-group, .form > div.form-group {
       color: #898989; }
   .btn > i {
     margin-right: 5px;
-    font-size: 1.17em;
-    vertical-align: baseline; }
+    font-size: 20px; }
 
 .btn-primary {
   color: #fff;
@@ -581,10 +583,6 @@ form > div.form-group, .form > div.form-group {
   .btn-primary:active, .btn-primary.active {
     color: #fff;
     background-color: #1d4568; }
-  .btn-primary > span.badge {
-    margin-left: 10px;
-    background-color: #fff;
-    color: #286090; }
 
 .btn-success {
   color: #fff;
@@ -596,10 +594,6 @@ form > div.form-group, .form > div.form-group {
   .btn-success:active, .btn-success.active {
     color: #fff;
     background-color: #357935; }
-  .btn-success > span.badge {
-    margin-left: 10px;
-    background-color: #fff;
-    color: #449d44; }
 
 .btn-info {
   color: #fff;
@@ -611,10 +605,6 @@ form > div.form-group, .form > div.form-group {
   .btn-info:active, .btn-info.active {
     color: #fff;
     background-color: #2490af; }
-  .btn-info > span.badge {
-    margin-left: 10px;
-    background-color: #fff;
-    color: #31b0d5; }
 
 .btn-warning {
   color: #fff;
@@ -626,10 +616,6 @@ form > div.form-group, .form > div.form-group {
   .btn-warning:active, .btn-warning.active {
     color: #fff;
     background-color: #c77c11; }
-  .btn-warning > span.badge {
-    margin-left: 10px;
-    background-color: #fff;
-    color: #ec971f; }
 
 .btn-danger {
   color: #fff;
@@ -641,15 +627,11 @@ form > div.form-group, .form > div.form-group {
   .btn-danger:active, .btn-danger.active {
     color: #fff;
     background-color: #c9302c; }
-  .btn-danger > span.badge {
-    margin-left: 10px;
-    background-color: #fff;
-    color: #d9534f; }
 
 .btn-block {
   display: block;
   width: 100%;
-  padding: 12px 8px;
+  height: 51px;
   margin-bottom: 10px;
   font-size: 16px; }
 
@@ -674,43 +656,3 @@ a {
 
 .text-center {
   text-align: center !important; }
-
-span.badge {
-  display: inline-block;
-  min-width: 10px;
-  padding: 3px 7px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  background-color: #777;
-  border-radius: 10px; }
-
-.tab {
-  width: 100%;
-  min-height: 100px; }
-  .tab > ul {
-    height: 40px;
-    width: 100%;
-    clear: both; }
-    .tab > ul li {
-      min-width: 80px;
-      float: left;
-      height: 100%;
-      text-align: center;
-      cursor: pointer;
-      line-height: 40px; }
-    .tab > ul li.active {
-      border-radius: 5px 5px 0 0;
-      border-top: 1px solid #ccc;
-      border-left: 1px solid #ccc;
-      background-color: #ccc; }
-  .tab > .item {
-    width: 100%;
-    min-height: 50px;
-    border: 1px solid #ccc;
-    display: none;
-    padding: 10px; }

@@ -34,12 +34,12 @@ var jQuery = require('jquery');
 
             if (num >= 0) {
                 //输入过程中的提示
-                html = '目前您还可以输入<span style="color:red;"> ' + num + ' </span>个字';
+                html = '目前您还可以输入<span style="color:green;"> ' + num + ' </span>个字';
                 oInput.attr('validate', "true");
                 oTip.html(html);
             } else {
                 //超出限定字数的提示
-                html = '目前您已超出<span style="color:red;"> ' + -1 * num + ' </span>个字';
+                html = '您已超出<span style="color:red;"> ' + -1 * num + ' </span>个字';
                 oInput.attr('validate', "false");
                 oTip.html(html);
             }

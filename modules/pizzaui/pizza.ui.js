@@ -34,12 +34,12 @@ var jQuery = require('jquery');
 
             if (num >= 0) {
                 //输入过程中的提示
-                html = '目前您还可以输入<span style="color:red;"> ' + num + ' </span>个字';
+                html = '目前您还可以输入<span style="color:green;"> ' + num + ' </span>个字';
                 oInput.attr('validate', "true");
                 oTip.html(html);
             } else {
                 //超出限定字数的提示
-                html = '目前您已超出<span style="color:red;"> ' + -1 * num + ' </span>个字';
+                html = '您已超出<span style="color:red;"> ' + -1 * num + ' </span>个字';
                 oInput.attr('validate', "false");
                 oTip.html(html);
             }
@@ -399,9 +399,6 @@ var jQuery = require('jquery');
 
   $.fn.pizzaSelect = function(options) {
     defaults = {
-      zIndex: null, //选择列表z-index值，如需兼容IE6/7,必须加此属性
-      width: null, //选择列表宽度
-      height: null, //选择列表高度
       showMaxHeight: null, //选择列表显示最大高度
       optionHeight: 24, //选择列表单项高度
       triangleSize: 6, //右侧小三角大小
@@ -423,6 +420,10 @@ var jQuery = require('jquery');
      */
     function getSelectList(select) {
       var o = $(select);
+      var oWidth = parseInt(o.width());
+      var oHeight = parseInt(o.css("height"));
+
+
       var selectId = o.attr('id');
       var selectClass = o.attr('class');
       var selectedObj = o.find('option[selected="selected"]');
@@ -430,8 +431,8 @@ var jQuery = require('jquery');
       var selected = '',
         selectedText = '';
       if (options.option.selected != undefined) {
-          selected = options.option.selected.value;
-          selectedText = options.option.selected.name;
+        selected = options.option.selected.value;
+        selectedText = options.option.selected.name;
       } else if (selectedObj.length > 0) {
         selected = selectedObj.val();
         selectedText = selectedObj.text();
@@ -443,10 +444,10 @@ var jQuery = require('jquery');
         selectedText = o.find('option').first().text();
       }
 
-      var div = '<div  id="' + selectId + 'p" class="btn-select" style="width:' + parseInt(o.css('width')) + 'px;height:' + parseInt(o.css('height')) + 'px" tabindex="0">';
+      var div = '<div  id="' + selectId + 'p" class="btn-select" style="width:' + oWidth + 'px;height:' + oHeight + 'px" tabindex="0">';
       div += '<input type="hidden" value="' + selected + '" name="' + o.attr('name') + '" id="' + selectId + '"/>';
       div += '<i class="select-down icon-caret-down"></i>';
-      div += '<label class="select-button"  style="height:' + (parseInt(o.height()) - 4) + 'px;">'+ selectedText +'</label>';
+      div += '<label class="select-button"  style="height:' + (oHeight - 2) + 'px;line-height:' + (oHeight - 2) + 'px;">' + selectedText + '</label>';
       div += '<div class="select-list" >';
       div += '<ul>';
       if (!options.option.selected) {
@@ -487,10 +488,10 @@ var jQuery = require('jquery');
      * @return {[type]} [description]
      */
     function disUllist(obj) {
-      obj.next().find('.select-button').click(function() {//点击内容区弹出下拉
+      obj.next().find('.select-button').click(function() { //点击内容区弹出下拉
         $(this).next().toggle();
       });
-      obj.next().find('.select-down').click(function() {//点击箭头弹出下拉
+      obj.next().find('.select-down').click(function() { //点击箭头弹出下拉
         $(this).next().next().toggle();
       });
     }
@@ -1587,62 +1588,59 @@ var tools = require('pizzatools');
  * @Author: 左盐(huabinglan@163.com)
  * @Date: 14-1-2 下午6:05
  */
-;(function($) {
+;
+(function($) {
 
-    $.fn.pizzaTab = function(options) {
+  $.fn.pizzaTab = function(options) {
 
-        var defaults = {
-            activeClass:"f-tab-active",//默认标题选中样式
-            contentClass:'f-tab-c',//默认正文区样式
-            ajaxUrl:undefined,//通过ajax加载内容，此为ajax获取数据的地址，暂不支持JSONP，提交方法为POST//默认为不通过ajax
-            loaddingClass:'f-tab-loadding'
-        }
+    var defaults = {
+      activeCla: "active", //默认标题选中样式
+      itemCla: 'item', //默认正文区样式
+      url: undefined
+    }
 
-        var options = $.extend(defaults, options);
-
-        //私有函数，ajax执行函数
-        function _ajaxData(li,divCon) {
-                if( $.trim(divCon.html()) == '') {
-                    var loadd=$('<div class="'+options.loaddingClass+'"></div>');
-                    divCon.append(loadd);
-                    $.ajax({//请求数据
-                        type:"POST",
-                        url:options.ajaxUrl,
-                        data:li.attr('param'),
-                        success:function(msg) {
-                            loadd.remove();
-                            divCon.html(msg);
-                        }
-                    });
-                }
-        }
-
-        //事件绑定
-        var li=this.find('ul:first').find('li'),
-            lia=li.find('a');
-        lia.click(function() {
-            var liac=$(this),
-                lic=liac.parent(),
-                liclass=lic.attr('class');
-            if(liclass==undefined||liclass.indexOf(options.activeClass) == -1) {
-                li.removeClass(options.activeClass);
-                lic.addClass(options.activeClass);
-                var div=$(liac.attr('href'));
-                div.siblings('.'+options.contentClass).css('display','none');
-                div.css('display','block');
-                if(options.ajaxUrl) {
-                    _ajaxData(lic,div);
-                }
-            }
-            return false;
+    var options = $.extend(defaults, options);
+    //私有函数，ajax执行函数
+    function _ajaxData(li, divCon) {
+      if ($.trim(divCon.html()) == '') {
+        $.ajax({ //请求数据
+          type: "POST",
+          url: options.url,
+          data: li.attr('param'),
+          success: function(msg) {
+            divCon.html(msg);
+          }
         });
+      }
+    }
 
-        //当需要ajax请求并且第一项为空时，默认加载执行ajax加载第一项的内容
-        if(options.ajaxUrl) {
-            var firstLi=this.find('ul:first').find('.' + options.activeClass),
-                firstDiv=$(firstLi.find('a').attr('href'));
-            _ajaxData(firstLi,firstDiv);
+    //事件绑定
+    var ul = this.find('ul:first');
+    ul.on("click", 'li', function() {
+      var li = $(this),index = li.index();
+
+      if (!li.hasClass(options.activeClass)) {
+          var activeli = li.parent().find("." + options.activeCla);
+          var activeliIndex = activeli.index();
+          activeli.removeClass(options.activeCla);
+          li.addClass(options.activeCla);
+          var divs = li.parent().parent().children("." + options.itemCla);
+          $(divs[activeliIndex]).removeAttr("style");
+          $(divs[index]).css("display", "block");
+          if (options.ajaxUrl) {
+            _ajaxData(lic, div);
+          }
         }
-    };
+    });
+
+    //当需要ajax请求并且第一项为空时，默认加载执行ajax加载第一项的内容
+    if (options.url) {
+      var firstLi = this.find('ul:first').find('.' + options.activeCla),
+        firstDiv = $("." + options.itemCla).first().css("display", "block");
+      _ajaxData(firstLi, firstDiv);
+    } else {
+      $(this).children("." + options.itemCla).first().css("display", "block");
+    }
+  };
 
 })(jQuery);

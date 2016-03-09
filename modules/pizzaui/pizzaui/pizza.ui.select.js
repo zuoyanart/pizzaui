@@ -11,9 +11,6 @@
 
   $.fn.pizzaSelect = function(options) {
     defaults = {
-      zIndex: null, //选择列表z-index值，如需兼容IE6/7,必须加此属性
-      width: null, //选择列表宽度
-      height: null, //选择列表高度
       showMaxHeight: null, //选择列表显示最大高度
       optionHeight: 24, //选择列表单项高度
       triangleSize: 6, //右侧小三角大小
@@ -35,6 +32,10 @@
      */
     function getSelectList(select) {
       var o = $(select);
+      var oWidth = parseInt(o.width());
+      var oHeight = parseInt(o.css("height"));
+
+
       var selectId = o.attr('id');
       var selectClass = o.attr('class');
       var selectedObj = o.find('option[selected="selected"]');
@@ -42,8 +43,8 @@
       var selected = '',
         selectedText = '';
       if (options.option.selected != undefined) {
-          selected = options.option.selected.value;
-          selectedText = options.option.selected.name;
+        selected = options.option.selected.value;
+        selectedText = options.option.selected.name;
       } else if (selectedObj.length > 0) {
         selected = selectedObj.val();
         selectedText = selectedObj.text();
@@ -55,10 +56,10 @@
         selectedText = o.find('option').first().text();
       }
 
-      var div = '<div  id="' + selectId + 'p" class="btn-select" style="width:' + parseInt(o.css('width')) + 'px;height:' + parseInt(o.css('height')) + 'px" tabindex="0">';
+      var div = '<div  id="' + selectId + 'p" class="btn-select" style="width:' + oWidth + 'px;height:' + oHeight + 'px" tabindex="0">';
       div += '<input type="hidden" value="' + selected + '" name="' + o.attr('name') + '" id="' + selectId + '"/>';
       div += '<i class="select-down icon-caret-down"></i>';
-      div += '<label class="select-button"  style="height:' + (parseInt(o.height()) - 4) + 'px;">'+ selectedText +'</label>';
+      div += '<label class="select-button"  style="height:' + (oHeight - 2) + 'px;line-height:' + (oHeight - 2) + 'px;">' + selectedText + '</label>';
       div += '<div class="select-list" >';
       div += '<ul>';
       if (!options.option.selected) {
@@ -99,10 +100,10 @@
      * @return {[type]} [description]
      */
     function disUllist(obj) {
-      obj.next().find('.select-button').click(function() {//点击内容区弹出下拉
+      obj.next().find('.select-button').click(function() { //点击内容区弹出下拉
         $(this).next().toggle();
       });
-      obj.next().find('.select-down').click(function() {//点击箭头弹出下拉
+      obj.next().find('.select-down').click(function() { //点击箭头弹出下拉
         $(this).next().next().toggle();
       });
     }
