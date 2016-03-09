@@ -1,0 +1,10 @@
+2016-03-09 15:32:52: -- Analysis Started by On File Change Incremental
+2016-03-09 15:32:52: 变更：1， 冲突：， 复制时间：， 复制状态：/， 错误： , All: 116
+2016-03-09 15:32:52: Left to Right: Copy File: 1 
+2016-03-09 15:32:52: == Sync Started by On File Change Incremental
+2016-03-09 15:32:52: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizza.ui.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizza.ui.js'
+2016-03-09 15:32:52: ===== ：同步完毕。时间：00:00:00，速度： 0 字节/s =====, 项目同步未必： 1，错误： 
+2016-03-09 15:32:53: -- Analysis Started by On File Change PostSync Re-Analyze
+2016-03-09 15:32:53: 变更：， 冲突：， 复制时间：， 复制状态：/， 错误： , All: 116
+2016-03-09 15:32:53: ----- ：分析已结束。 历时 00:00:01， 速度： 116 个文件/秒 -----
+2016-03-09 15:32:53: 

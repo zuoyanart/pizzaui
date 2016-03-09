@@ -1,0 +1,86 @@
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 8px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  min-width: 100px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: top;
+  cursor: pointer;
+  background-color: #ccc;
+  border: 1px solid #ccc;
+  border-radius: 5px; }
+  .btn:active, .btn.active {
+    color: inherit;
+    background-color: #ccc; }
+  .btn:disabled, .btn.disabled {
+    background-color: #e6ecf5;
+    border: 1px solid #c0c8c8;
+    color: #898989; }
+    .btn:disabled:hover, .btn.disabled:hover {
+      background-color: #e6ecf5;
+      color: #898989; }
+
+.btn-primary {
+  color: #fff;
+  background-color: #286090;
+  border: 1px solid #22537c; }
+  .btn-primary.hover, .btn-primary:hover {
+    color: #fff;
+    background-color: #1f4b70; }
+  .btn-primary:active, .btn-primary.active {
+    color: #fff;
+    background-color: #1d4568; }
+
+.btn-success {
+  color: #fff;
+  background-color: #449d44;
+  border: 1px solid #3c8b3c; }
+  .btn-success.hover, .btn-success:hover {
+    color: #fff;
+    background-color: #388138; }
+  .btn-success:active, .btn-success.active {
+    color: #fff;
+    background-color: #357935; }
+
+.btn-info {
+  color: #fff;
+  background-color: #31b0d5;
+  border: 1px solid #28a1c4; }
+  .btn-info.hover, .btn-info:hover {
+    color: #fff;
+    background-color: #2597b8; }
+  .btn-info:active, .btn-info.active {
+    color: #fff;
+    background-color: #2490af; }
+
+.btn-warning {
+  color: #fff;
+  background-color: #ec971f;
+  border: 1px solid #df8a13; }
+  .btn-warning.hover, .btn-warning:hover {
+    color: #fff;
+    background-color: #d18112; }
+  .btn-warning:active, .btn-warning.active {
+    color: #fff;
+    background-color: #c77c11; }
+
+.btn-danger {
+  color: #fff;
+  background-color: #d9534f;
+  border: 1px solid #d43f3a; }
+  .btn-danger.hover, .btn-danger:hover {
+    color: #fff;
+    background-color: #d2322d; }
+  .btn-danger:active, .btn-danger.active {
+    color: #fff;
+    background-color: #c9302c; }
+
+.btn-block {
+  display: block;
+  width: 100%;
+  height: 51px;
+  margin-bottom: 10px;
+  font-size: 16px; }

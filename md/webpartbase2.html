@@ -1,0 +1,19 @@
+<h3 id="html">html</h3>
+<pre><code class="hljs js">  &lt;textarea name=<span class="hljs-string">""</span> id=<span class="hljs-string">"wordcount"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"wordstip"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"wordcount-tip"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span></span>
+</code></pre>
+<h3 id="js">js</h3>
+<pre><code class="hljs js"><span class="hljs-built_in">require</span>(<span class="hljs-string">'pizzaui'</span>);
+$(<span class="hljs-string">'#wordcount'</span>).wordsTip({
+    min: <span class="hljs-number">10</span>,<span class="hljs-comment">//最小字数</span>
+    max: <span class="hljs-number">200</span>,<span class="hljs-comment">//最大字数</span>
+    English: <span class="hljs-literal">true</span><span class="hljs-comment">//是否区分中英文</span>
+});
+</code></pre>
+<h3 id="%E8%AF%B4%E6%98%8E">说明</h3>
+<ul>
+<li>提示区的id为 textarea的id + &quot;-tip&quot;</li>
+</ul>
+<h3 id="%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE">文件位置</h3>
+<pre><code class="hljs js">/modules/pizzaui/pizzaui/pizza.ui.wordsTip.js
+</code></pre>

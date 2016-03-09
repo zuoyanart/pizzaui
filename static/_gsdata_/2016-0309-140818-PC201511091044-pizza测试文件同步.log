@@ -1,0 +1,61 @@
+2016-03-09 14:08:19: -- Analysis Started by On File Change 1st Full Analyze
+2016-03-09 14:08:19: Do Not Propagate Deletions: 1-way deletions reverted: 22
+2016-03-09 14:08:19: /modules/laydate/skins/danlan/icon.png: 警告：旧文件将替换新文件
+2016-03-09 14:08:19: /modules/layer/skin/default/icon-ext.png: 警告：旧文件将替换新文件
+2016-03-09 14:08:19: /modules/layer/skin/default/loading-0.gif: 警告：旧文件将替换新文件
+2016-03-09 14:08:19: /modules/layer/skin/default/loading-1.gif: 警告：旧文件将替换新文件
+2016-03-09 14:08:19: /modules/layer/skin/default/loading-2.gif: 警告：旧文件将替换新文件
+2016-03-09 14:08:19: 变更：46， 冲突：， 复制时间：， 复制状态：/16， 错误： , All: 116
+2016-03-09 14:08:19: Left to Right: Copy File: 46 
+2016-03-09 14:08:19: == Sync Started by On File Change 1st Full Analyze
+2016-03-09 14:08:19: 创建文件夹 'F:/NodeJs/pizzaui-test/static/modules/pizzajs'
+2016-03-09 14:08:19: 创建文件夹 'F:/NodeJs/pizzaui-test/static/modules/pizzajs/pizza'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/jquery/jquery.js' -> 'F:/NodeJs/pizzaui-test/static/modules/jquery/jquery.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/laydate/laydate.js' -> 'F:/NodeJs/pizzaui-test/static/modules/laydate/laydate.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/laydate/need/laydate.css' -> 'F:/NodeJs/pizzaui-test/static/modules/laydate/need/laydate.css'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/laydate/skins/danlan/icon.png' -> 'F:/NodeJs/pizzaui-test/static/modules/laydate/skins/danlan/icon.png'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/laydate/skins/danlan/laydate.css' -> 'F:/NodeJs/pizzaui-test/static/modules/laydate/skins/danlan/laydate.css'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/extend/layer.ext.js' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/extend/layer.ext.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/layer.js' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/layer.js'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/layer/layer.rar' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/layer.rar'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/skin/default/icon-ext.png' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/skin/default/icon-ext.png'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/skin/default/icon.png' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/skin/default/icon.png'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/skin/default/loading-0.gif' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/skin/default/loading-0.gif'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/skin/default/loading-1.gif' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/skin/default/loading-1.gif'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/skin/default/loading-2.gif' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/skin/default/loading-2.gif'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/skin/layer.css' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/skin/layer.css'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/skin/layer.ext.css' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/skin/layer.ext.css'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/layer/skin/layer.js' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/skin/layer.js'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/pizzajs/ieBetter.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzajs/ieBetter.js'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/pizzajs/pizza/pizza.ajax.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzajs/pizza/pizza.ajax.js'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/pizzajs/pizza/pizza.animate.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzajs/pizza/pizza.animate.js'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/pizzajs/pizza/pizza.data.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzajs/pizza/pizza.data.js'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/pizzajs/pizza/pizza.dom.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzajs/pizza/pizza.dom.js'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/pizzajs/pizza/pizza.event.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzajs/pizza/pizza.event.js'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/pizzajs/pizza/pizza.unit.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzajs/pizza/pizza.unit.js'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/pizzajs/pizza/合并js.bat' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzajs/pizza/合并js.bat'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/pizzajs/pizza.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzajs/pizza.js'
+2016-03-09 14:08:19: 新建复制 'F:/NodeJs/pizzaui/modules/pizzajs/velocity.min.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzajs/velocity.min.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzalayer/layer.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzalayer/layer.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzatools/pizza.tools.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzatools/pizza.tools.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/memberInfo.ejs' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/memberInfo.ejs'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizza.ui.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizza.ui.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui/memberInfo.ejs' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui/memberInfo.ejs'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui/pizza.ui.area.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui/pizza.ui.area.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui/pizza.ui.memberInfo.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui/pizza.ui.memberInfo.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui/pizza.ui.placeholder.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui/pizza.ui.placeholder.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui/pizza.ui.select.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui/pizza.ui.select.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui/pizza.ui.show.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui/pizza.ui.show.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui/pizza.ui.store.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui/pizza.ui.store.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui/pizza.ui.tab.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui/pizza.ui.tab.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui/pizza.ui.tip4detail.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui/pizza.ui.tip4detail.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui/pizza.ui.validate.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui/pizza.ui.validate.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui/pizza.ui.wordsTip.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui/pizza.ui.wordsTip.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui/合并js.bat' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui/合并js.bat'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/store/pizza.ui.store.js' -> 'F:/NodeJs/pizzaui-test/static/modules/store/pizza.ui.store.js'
+2016-03-09 14:08:19: 覆盖复制 'F:/NodeJs/pizzaui/modules/xss/xss.js' -> 'F:/NodeJs/pizzaui-test/static/modules/xss/xss.js'
+2016-03-09 14:08:19: ===== ：同步完毕。时间：00:00:00，速度： 0 字节/s =====, 项目同步未必： 62，错误： 
+2016-03-09 14:08:20: -- Analysis Started by On File Change PostSync Re-Analyze
+2016-03-09 14:08:20: 变更：， 冲突：， 复制时间：， 复制状态：/， 错误： , All: 116
+2016-03-09 14:08:20: ----- ：分析已结束。 历时 00:00:01， 速度： 116 个文件/秒 -----
+2016-03-09 14:08:20: 

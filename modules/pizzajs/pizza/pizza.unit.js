@@ -1,0 +1,1 @@
+define("pizzajs",function(){});

@@ -1,0 +1,24 @@
+2016-03-09 18:08:48: -- Analysis Started by On File Change Incremental
+2016-03-09 18:08:48: 左侧: State File has changed, so re-read it: F:/NodeJs/pizzaui/_gsdata_/_file_state_v4._gs
+2016-03-09 18:08:48: 左侧: State file does not exist: F:/NodeJs/pizzaui/_gsdata_/_file_state_v4._gs
+2016-03-09 18:08:48: Do Not Propagate Deletions: 1-way deletions reverted: 1
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui/memberInfo.ejs: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui/pizza.ui.area.js: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui/pizza.ui.memberInfo.js: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui/pizza.ui.placeholder.js: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui/pizza.ui.select.js: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui/pizza.ui.show.js: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui/pizza.ui.store.js: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui/pizza.ui.tab.js: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui/pizza.ui.tip4detail.js: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui/pizza.ui.validate.js: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui/pizza.ui.wordsTip.js: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: /modules/pizzaui/pizzaui/合并js.bat: 警告：旧文件将替换新文件
+2016-03-09 18:08:48: 变更：13， 冲突：， 复制时间：， 复制状态：/33， 错误： , All: 117
+2016-03-09 18:08:48: Left to Right: Copy File: 13 
+2016-03-09 18:08:48: == Sync Started by On File Change Incremental
+2016-03-09 18:08:48: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui'
+- 错误: Error copying file: BlockCopy after Denied/Locked: Cannot open local file 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui' for read: 拒绝访问。  (error 5)
+2016-03-09 18:08:48: ===== ：同步完毕。时间：00:00:00，速度： 0 字节/s =====, 项目同步未必： 33，错误： 1
+2016-03-09 18:08:48: 

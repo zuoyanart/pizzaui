@@ -18,24 +18,40 @@ $(<span class="hljs-string">'#selectDemo'</span>).pizzaSelect({
 });
 <span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></span>
 </code></pre>
-<h3 id="%E7%94%9F%E6%88%90%E7%9A%84html">生成的html</h3>
-<pre><code class="hljs js">&lt;div id=<span class="hljs-string">"selectDemop"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"btn-select"</span> style=<span class="hljs-string">"width:1000px;height:30px"</span> tabindex=<span class="hljs-string">"0"</span>&gt;
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"hidden"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Guangzhou"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"city"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"selectDemo"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"select-down icon-caret-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"select-button"</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"height:24px;"</span>&gt;</span>广州<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"select-list"</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"display: none;"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">data</span>=<span class="hljs-value">""</span>&gt;</span>请选择城市<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">data</span>=<span class="hljs-value">"Beijing"</span>&gt;</span>北京<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">data</span>=<span class="hljs-value">"Shanghai"</span>&gt;</span>上海<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">data</span>=<span class="hljs-value">"Guangzhou"</span>&gt;</span>广州<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
+<h3 id="%E4%BD%BF%E7%94%A8">使用</h3>
+<h5 id="%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A">数据绑定</h5>
+<p> 默认selected属性</p>
+<pre><code class="hljs js">&lt;select name=<span class="hljs-string">"city"</span> id=<span class="hljs-string">"selectDemo"</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">""</span> <span class="hljs-attribute">selected</span>=<span class="hljs-value">"selected"</span>&gt;</span>请选择城市<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Beijing"</span>&gt;</span>北京<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Shanghai"</span>&gt;</span>上海<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Guangzhou"</span>&gt;</span>广州<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">select</span>&gt;</span></span>
+</code></pre>
+<p> 在select上添加val属性,val指向select的value值</p>
+<pre><code class="hljs js">&lt;select name=<span class="hljs-string">"city"</span> id=<span class="hljs-string">"selectDemo"</span> val=<span class="hljs-string">"Beijing"</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">""</span>&gt;</span>请选择城市<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Beijing"</span>&gt;</span>北京<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Shanghai"</span>&gt;</span>上海<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Guangzhou"</span>&gt;</span>广州<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">select</span>&gt;</span></span>
+</code></pre>
+<p> 传递options</p>
+<pre><code class="hljs js">$(<span class="hljs-string">'#selectDemo'</span>).pizzaSelect({
+  option: {
+    selected: {
+        value: <span class="hljs-string">"value"</span>,
+        name: <span class="hljs-string">"text value"</span>
+    },
+  onChange: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>) </span>{
+    $(<span class="hljs-string">'#selectDemoTips'</span>).html(obj.attr(<span class="hljs-string">'data'</span>));
+  }
+});
 </code></pre>
 <h3 id="%E8%AF%B4%E6%98%8E">说明</h3>
 <ul>
-<li>生成的下拉select同宽</li>
+<li>模拟生成的下拉与select同宽，同高</li>
+<li></li>
 <li>onChange，可传递一个函数，用来实现诸如联动等功能。性质等同与select的onchange，参数为：obj(点击的li元素)</li>
 </ul>
 <h3 id="%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE">文件位置</h3>

@@ -1,0 +1,22 @@
+<h3 id="html">html</h3>
+<pre><code class="hljs js">   &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"tab"</span> id=<span class="hljs-string">"tab1"</span>&gt;
+                  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"active"</span>&gt;</span>选项1<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>选项2<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>选项3<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                  <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+                  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item"</span>&gt;</span>1---<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+                  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item"</span>&gt;</span>2--<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+                  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item"</span>&gt;</span>3---<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
+</code></pre>
+<h3 id="js">js</h3>
+<pre><code class="hljs js">$(<span class="hljs-string">"#tab1"</span>).pizzaTab({
+  activeCla: <span class="hljs-string">"active"</span>, <span class="hljs-comment">//默认标题选中样式</span>
+  itemCla: <span class="hljs-string">'item'</span>, <span class="hljs-comment">//默认正文区样式</span>
+  url: <span class="hljs-string">''</span><span class="hljs-comment">//ajax 获取数据的url地址</span>
+});
+</code></pre>
+<h3 id="%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE">文件位置</h3>
+<pre><code class="hljs js">/modules/pizzaui/pizzaui/pizza.ui.tab.js
+</code></pre>

@@ -8,23 +8,10 @@
        <meta charset="utf-8">
    <meta name="renderer" content="webkit">
    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-   <link href="/css/font-awesome.css" rel="stylesheet">
-   <link href="/css/pizza.css" rel="stylesheet">
-   <link href="/css/markdown.css" rel="stylesheet">
    <!--[if lt IE 9]>
     <link href="./css/ie8.css" rel="stylesheet">
    <![endif]-->
-   <link href="/css/index.css" rel="stylesheet">
-   <script type="text/javascript" src="/lib/mod.js"></script>
-
-
-<script type="text/javascript" src="/modules/jquery/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="/modules/layer/layer.js"></script>
-<script type="text/javascript" src="/modules/pizzalayer/layer.js"></script>
-<script type="text/javascript" src="/modules/pizzatools/pizza.tools.js"></script>
-<script type="text/javascript" src="/modules/pizzaui/pizza.ui.js"></script>
-<script type="text/javascript" src="/widget/rightmenu/rightmenu.js"></script>
-
+   <link type="text/css" rel="stylesheet" href="/pkg/mcren_1b363.css">
 </head>
 
 <body>
@@ -36,11 +23,9 @@
 		<div>
 			<a href="/">首页</a>
 			<a href="/fis.html">fis3构建</a>
-			<a href="/basepart.html">基本元件</a>
-			<a href="/webpartbase.html">基本复合组件</a>
-			<a href="/webpart.html">复杂复合组件</a>
-			<a href="/static.html">静态部分</a>
-			<a href="/less.html">LESS</a>
+			<a href="/basepart.html">css</a>
+			<a href="/webpartbase.html">js插件</a>
+			<a href="http://github.com/zuoyanart/pizzaui" target="_blank">github</a>
 		</div>
 	</header>
 </div>
@@ -48,6 +33,7 @@
     <div class="main">
         <div class="leftside">
             <h2>下拉菜单</h2>
+            <hr>
                 <select name="city" id="selectDemo">
                     <option value="">请选择城市</option>
                     <option value="Beijing">北京</option>
@@ -76,24 +62,40 @@ $(<span class="hljs-string">'#selectDemo'</span>).pizzaSelect({
 });
 <span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></span>
 </code></pre>
-<h3 id="%E7%94%9F%E6%88%90%E7%9A%84html">生成的html</h3>
-<pre><code class="hljs js">&lt;div id=<span class="hljs-string">"selectDemop"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"btn-select"</span> style=<span class="hljs-string">"width:1000px;height:30px"</span> tabindex=<span class="hljs-string">"0"</span>&gt;
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"hidden"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Guangzhou"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"city"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"selectDemo"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"select-down icon-caret-down"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"select-button"</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"height:24px;"</span>&gt;</span>广州<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"select-list"</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"display: none;"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">data</span>=<span class="hljs-value">""</span>&gt;</span>请选择城市<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">data</span>=<span class="hljs-value">"Beijing"</span>&gt;</span>北京<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">data</span>=<span class="hljs-value">"Shanghai"</span>&gt;</span>上海<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">data</span>=<span class="hljs-value">"Guangzhou"</span>&gt;</span>广州<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
+<h3 id="%E4%BD%BF%E7%94%A8">使用</h3>
+<h5 id="%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A">数据绑定</h5>
+<p> 默认selected属性</p>
+<pre><code class="hljs js">&lt;select name=<span class="hljs-string">"city"</span> id=<span class="hljs-string">"selectDemo"</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">""</span> <span class="hljs-attribute">selected</span>=<span class="hljs-value">"selected"</span>&gt;</span>请选择城市<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Beijing"</span>&gt;</span>北京<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Shanghai"</span>&gt;</span>上海<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Guangzhou"</span>&gt;</span>广州<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">select</span>&gt;</span></span>
+</code></pre>
+<p> 在select上添加val属性,val指向select的value值</p>
+<pre><code class="hljs js">&lt;select name=<span class="hljs-string">"city"</span> id=<span class="hljs-string">"selectDemo"</span> val=<span class="hljs-string">"Beijing"</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">""</span>&gt;</span>请选择城市<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Beijing"</span>&gt;</span>北京<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Shanghai"</span>&gt;</span>上海<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Guangzhou"</span>&gt;</span>广州<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">select</span>&gt;</span></span>
+</code></pre>
+<p> 传递options</p>
+<pre><code class="hljs js">$(<span class="hljs-string">'#selectDemo'</span>).pizzaSelect({
+  option: {
+    selected: {
+        value: <span class="hljs-string">"value"</span>,
+        name: <span class="hljs-string">"text value"</span>
+    },
+  onChange: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>) </span>{
+    $(<span class="hljs-string">'#selectDemoTips'</span>).html(obj.attr(<span class="hljs-string">'data'</span>));
+  }
+});
 </code></pre>
 <h3 id="%E8%AF%B4%E6%98%8E">说明</h3>
 <ul>
-<li>生成的下拉select同宽</li>
+<li>模拟生成的下拉与select同宽，同高</li>
+<li></li>
 <li>onChange，可传递一个函数，用来实现诸如联动等功能。性质等同与select的onchange，参数为：obj(点击的li元素)</li>
 </ul>
 <h3 id="%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE">文件位置</h3>
@@ -102,120 +104,32 @@ $(<span class="hljs-string">'#selectDemo'</span>).pizzaSelect({
 
                 </div>
                 <h2>textarea计数统计输入框</h2>
-                <textarea name="" id=""></textarea>
-                <p class="" id=""></p>
+                <textarea name="" id="wordcount"></textarea>
+                <p style="margin-top:10px;font-size:14px;text-align:right;" id="wordcount-tip"></p>
                 <div class="markdown">
-                    <pre><code class="hljs js">&lt;span <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"small"</span>&gt;我的人脉&lt;<span class="hljs-regexp">/span&gt;</span>
+                    <h3 id="html">html</h3>
+<pre><code class="hljs js">  &lt;textarea name=<span class="hljs-string">""</span> id=<span class="hljs-string">"wordcount"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"wordstip"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"wordcount-tip"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span></span>
+</code></pre>
+<h3 id="js">js</h3>
+<pre><code class="hljs js"><span class="hljs-built_in">require</span>(<span class="hljs-string">'pizzaui'</span>);
+$(<span class="hljs-string">'#wordcount'</span>).wordsTip({
+    min: <span class="hljs-number">10</span>,<span class="hljs-comment">//最小字数</span>
+    max: <span class="hljs-number">200</span>,<span class="hljs-comment">//最大字数</span>
+    English: <span class="hljs-literal">true</span><span class="hljs-comment">//是否区分中英文</span>
+});
+</code></pre>
+<h3 id="%E8%AF%B4%E6%98%8E">说明</h3>
+<ul>
+<li>提示区的id为 textarea的id + &quot;-tip&quot;</li>
+</ul>
+<h3 id="%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE">文件位置</h3>
+<pre><code class="hljs js">/modules/pizzaui/pizzaui/pizza.ui.wordsTip.js
 </code></pre>
 
                 </div>
-                <h2>超级链接</h2>
-                <a href="#">我的人脉</a>
-                <h2>button按钮</h2>
-                <div>
-                    <button class="btn btn-primary ">默认</button>
-                    <button class="btn btn-success ">成功</button>
-                    <button class="btn btn-info ">一般信息</button>
-                    <button class="btn btn-warning ">警告</button>
-                    <button class="btn btn-danger ">危险</button>
-                </div>
-                <div class="markdown">
-                    <pre><code class="hljs js">&lt;button class="btn btn-primary "&gt;默认&lt;/button&gt;
-&lt;button class="btn btn-success "&gt;成功&lt;/button&gt;
-&lt;button class="btn btn-info "&gt;一般信息&lt;/button&gt;
-&lt;button class="btn btn-warning "&gt;警告&lt;/button&gt;
-&lt;button class="btn btn-danger "&gt;危险&lt;/button&gt;
-</code></pre>
-
-                </div>
-                <h2>全屏按钮</h2>
-                <div>
-                    <button class="btn btn-primary btn-block">默认</button>
-                    <button class="btn btn-success  btn-block">成功</button>
-                    <button class="btn btn-info  btn-block">一般信息</button>
-                    <button class="btn btn-warning btn-block">警告</button>
-                    <button class="btn btn-danger  btn-block">危险</button>
-                    <button class="btn btn-danger  btn-block" disabled="disabled">禁用</button>
-                </div>
-                <div class="markdown">
-                    <pre><code class="hljs js">&lt;div&gt;
-       <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-primary btn-block"</span>&gt;</span>默认<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-       <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-success  btn-block"</span>&gt;</span>成功<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-       <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-info  btn-block"</span>&gt;</span>一般信息<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-       <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-warning btn-block"</span>&gt;</span>警告<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-       <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-danger  btn-block"</span>&gt;</span>危险<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-       <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-danger  btn-block"</span> <span class="hljs-attribute">disabled</span>=<span class="hljs-value">"disabled"</span>&gt;</span>禁用<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
-</code></pre>
-
-                </div>
-                <h2>按钮文字对齐方式</h2>
-                <div>
-                    <button class="btn btn-primary btn-block textright">按钮</button>
-                </div>
-                <div class="markdown">
-                    <pre><code class="hljs js">&lt;div&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-primary btn-block textright"</span>&gt;</span>按钮<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
-</code></pre>
-
-                </div>
-                <h2>超链接按钮</h2>
-                <div>
-                    <a href="#" class="btn btn-primary">默认</a>
-                    <a href="#" class="btn btn-success">成功</a>
-                    <a href="#" class="btn btn-info">一般信息</a>
-                    <a href="#" class="btn btn-warning">警告</a>
-                    <a href="#" class="btn btn-danger">危险</a>
-                </div>
-                <div class="markdown">
-                    <pre><code class="hljs js">&lt;a href="#" class="btn btn-primary"&gt;默认&lt;/a&gt;
-&lt;a href="#" class="btn btn-success"&gt;成功&lt;/a&gt;
-&lt;a href="#" class="btn btn-info"&gt;一般信息&lt;/a&gt;
-&lt;a href="#" class="btn btn-warning"&gt;警告&lt;/a&gt;
-&lt;a href="#" class="btn btn-danger"&gt;危险&lt;/a&gt;
-</code></pre>
-
-                </div>
-                <h2>基本表单</h2>
-                <form class="form1">
-                    <div><label for="">Name：</label><input type="text"></div>
-                    <div><label for="">Password：</label><input type="password"></div>
-                    <div><label for="">Des：</label><textarea rows="6"></textarea></div>
-                    <div>
-                        <button class="btn btn-primary">确定</button>
-                        <button class="btn btn-info">重置</button>
-                    </div>
-                </form>
-                <div class="markdown">
-                    <pre><code class="hljs js"> &lt;form&gt;
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>Name：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>Password：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"password"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>Des：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">rows</span>=<span class="hljs-value">"6"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-primary"</span>&gt;</span>确定<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-info"</span>&gt;</span>重置<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></span>
-</code></pre>
-
-                </div>
-                <h2>横排基本表单</h2>
-                <div>
-                    <form>
-                        <div class="form-group"><label for="">Name：</label><input type="text"></div>
-                        <div class="form-group"><label for="">Password：</label><input type="password"></div>
-                        <div class="form-group"><button class="btn btn-primary">确定</button></div>
-                    </form>
-                </div>
-                <div class="markdown">
-                    <pre><code class="hljs js">&lt;form&gt;
-   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-group"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>Name：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-group"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>Password：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"password"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-group"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-primary"</span>&gt;</span>确定<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></span>
-</code></pre>
-
-                </div>
-                <h2>复合表单</h2>
+                <hr>
+                <h2>表单验证</h2>
                 <form id="form1">
                     <div><label for="">Name：</label><input type="text" id="name" name="name"></div>
                     <div><label for="">Password：</label><input type="password" id="password" name="password"></div>
@@ -237,7 +151,7 @@ $(<span class="hljs-string">'#selectDemo'</span>).pizzaSelect({
                     <div style="height:35px;">
                         <label for="">radiobox：</label>
                         <label class="radiogroup">
-                            <input type="radio" id="text11" name="radio">
+                            <input type="radio" id="text11" name="radio" checked="checked">
                             <label for="text11"></label>测试1</label>
                         <label class="radiogroup">
                             <input type="radio" id="text21" name="radio">
@@ -288,11 +202,6 @@ $(<span class="hljs-string">'#selectDemo'</span>).pizzaSelect({
                         <label for="">Des：</label>
                         <textarea rows="6" id="des" name="des"></textarea>
                     </div>
-                    <div>
-                        <label>城市选择一</label>
-                        <input type="text" id="area-1" name="area-1" placeholder="支持手动输入">
-                        <input type="text" id="area-2" name="area-2" placeholder="支持手动输入">
-                    </div>
                     <br>
                     <div>
                         <input type="submit" class="btn btn-primary" value="提交" />
@@ -301,99 +210,231 @@ $(<span class="hljs-string">'#selectDemo'</span>).pizzaSelect({
                     </div>
                 </form>
                 <div class="markdown">
-                    <pre><code class="hljs js">&lt;form id=<span class="hljs-string">"form1"</span>&gt;
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>Name：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"name"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>Password：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"password"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"password"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"password"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+                    <h3 id="html">html</h3>
+<p>html按照标准来写，要有id，name等属性</p>
+<pre><code class="hljs js"> &lt;form id=<span class="hljs-string">"form1"</span>&gt;
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>Name：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"name"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"name"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>Password：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"password"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"password"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"password"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"height:35px;margin-top: 20px;"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>checkbox：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"checkgroup"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text1"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"check"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试1<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"checkgroup"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text2"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"check"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试2<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"checkgroup"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text3"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"chexk"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试3<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"checkgroup"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text4"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"check"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text4"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试4<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>checkbox：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"checkgroup"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text1"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"check"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试1<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"checkgroup"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text2"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"check"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试2<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"checkgroup"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text3"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"chexk"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试3<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"checkgroup"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text4"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"check"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text4"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试4<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"height:35px;"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>radiobox：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"radiogroup"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"radio"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text11"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"radio"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text11"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试1<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"radiogroup"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"radio"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text21"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"radio"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text21"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试2<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"radiogroup"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"radio"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text31"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"radio"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text31"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试3<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"radiogroup"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"radio"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text41"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"radio"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text41"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试4<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>radiobox：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"radiogroup"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"radio"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text11"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"radio"</span> <span class="hljs-attribute">checked</span>=<span class="hljs-value">"checked"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text11"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试1<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"radiogroup"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"radio"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text21"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"radio"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text21"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试2<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"radiogroup"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"radio"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text31"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"radio"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text31"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试3<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"radiogroup"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"radio"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"text41"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"radio"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">"text41"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>测试4<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-    请选择年龄：
-    <span class="hljs-tag">&lt;<span class="hljs-title">select</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"age"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"age"</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"width:100px;"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">""</span> <span class="hljs-attribute">selected</span>=<span class="hljs-value">"selected"</span>&gt;</span>请选择年龄<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"3"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"5"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"6"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"7"</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"8"</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"9"</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"10"</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"11"</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"12"</span>&gt;</span>12<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"13"</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">select</span>&gt;</span>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; -- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-    <span class="hljs-tag">&lt;<span class="hljs-title">select</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"age1"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"age1"</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"width:100px;"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">""</span> <span class="hljs-attribute">selected</span>=<span class="hljs-value">"selected"</span>&gt;</span>请选择年龄<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"3"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"5"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"6"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"7"</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"8"</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"9"</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"10"</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"11"</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"12"</span>&gt;</span>12<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"13"</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">select</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>请选择年龄：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">select</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"age"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"age"</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"width:200px;"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">""</span> <span class="hljs-attribute">selected</span>=<span class="hljs-value">"selected"</span>&gt;</span>请选择年龄<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"3"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"5"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"6"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"7"</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"8"</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"9"</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"10"</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"11"</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"12"</span>&gt;</span>12<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"13"</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">select</span>&gt;</span>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; -- &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+        <span class="hljs-tag">&lt;<span class="hljs-title">select</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"age1"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"age1"</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"width:200px;"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">""</span> <span class="hljs-attribute">selected</span>=<span class="hljs-value">"selected"</span>&gt;</span>请选择年龄<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"1"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"2"</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"3"</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"4"</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"5"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"6"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"7"</span>&gt;</span>7<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"8"</span>&gt;</span>8<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"9"</span>&gt;</span>9<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"10"</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"11"</span>&gt;</span>11<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"12"</span>&gt;</span>12<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"13"</span>&gt;</span>13<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">select</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>Des：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">rows</span>=<span class="hljs-value">"6"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"des"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"des"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">""</span>&gt;</span>Des：<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">rows</span>=<span class="hljs-value">"6"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"des"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"des"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>城市选择一
-    <span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"area-1"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"area-1"</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"支持手动输入"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>城市选择二
-    <span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"area-2"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"area-2"</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"支持手动输入"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>城市选择一<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"area-1"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"area-1"</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"支持手动输入"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"area-2"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"area-2"</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"支持手动输入"</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-primary"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"提交"</span> /&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-info"</span>&gt;</span>重置<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-primary"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"提交"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-info"</span>&gt;</span>重置<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></span>
 </code></pre>
+<h3 id="js">js</h3>
+<pre><code class="hljs js">$(<span class="hljs-string">"#form1"</span>).pizzaValidate({
+     <span class="hljs-string">'fields'</span>: {
+       <span class="hljs-string">'#name'</span>: {
+         <span class="hljs-string">'must'</span>: <span class="hljs-literal">true</span>,
+         <span class="hljs-string">'minLength'</span>: <span class="hljs-number">5</span>,
+         <span class="hljs-string">'maxLength'</span>: <span class="hljs-number">12</span>,
+         focusMsg: <span class="hljs-string">"请输入用户名"</span>,
+         errMsg: <span class="hljs-string">'用户名不能为空或用户名必须在5-12个字符之间'</span>
+       },
+       <span class="hljs-string">'#password'</span>: {
+         <span class="hljs-string">'must'</span>: <span class="hljs-literal">true</span>,
+         <span class="hljs-string">'minLength'</span>: <span class="hljs-number">5</span>,
+         <span class="hljs-string">'maxLength'</span>: <span class="hljs-number">12</span>,
+         focusMsg: <span class="hljs-string">"请输入6-16位的密码"</span>,
+         errMsg: <span class="hljs-string">'密码不能为空且密码须在6-16个字符之间'</span>
+       },
+       <span class="hljs-string">'#age'</span>: {
+         <span class="hljs-string">'must'</span>: <span class="hljs-literal">true</span>,
+         <span class="hljs-string">'minLength'</span>: <span class="hljs-number">1</span>,
+         <span class="hljs-string">'maxLength'</span>: <span class="hljs-number">16</span>,
+         focusMsg: <span class="hljs-string">"请选择您的年龄"</span>,
+         errMsg: <span class="hljs-string">'请选择您的年龄'</span>
+       },
+       <span class="hljs-string">'#age1'</span>: {
+         <span class="hljs-string">'must'</span>: <span class="hljs-literal">true</span>,
+         <span class="hljs-string">'minLength'</span>: <span class="hljs-number">1</span>,
+         <span class="hljs-string">'maxLength'</span>: <span class="hljs-number">16</span>,
+         focusMsg: <span class="hljs-string">"请选择您的年龄"</span>,
+         errMsg: <span class="hljs-string">'请选择您的年龄'</span>
+       },
+       <span class="hljs-string">'#des'</span>: {
+         <span class="hljs-string">'must'</span>: <span class="hljs-literal">true</span>,
+         <span class="hljs-string">'minLength'</span>: <span class="hljs-number">1</span>,
+         <span class="hljs-string">'maxLength'</span>: <span class="hljs-number">500</span>,
+         focusMsg: <span class="hljs-string">"请输入描述"</span>,
+         errMsg: <span class="hljs-string">'用户名不能为空或用户名必须在1-500个字符之间'</span>
+       }
+     },
+     ajaxFun: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+       alert(<span class="hljs-string">"获取到的数据："</span> + data);
+       <span class="hljs-keyword">return</span>;
+       $.ajax({
+         type: <span class="hljs-string">'post'</span>,
+         url: <span class="hljs-string">'/ajax/ch'</span>,
+         success: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">msg</span>) </span>{
+           <span class="hljs-comment">//alert(msg);</span>
+         }
+       });
+     }
+   });
+</code></pre>
+<h4 id="%E9%AA%8C%E8%AF%81%E5%B1%9E%E6%80%A7%EF%BC%9A">验证属性：</h4>
+<blockquote>
+<ul>
+<li>must: //是否必填<br>-</li>
+<li>minLength: //最小长度<br>-</li>
+<li>maxLength: //最大长度<br>-</li>
+<li>comp: //比较对象，值为.class 或#id，比较当前对象的值和目标的值是否相等<br>-</li>
+<li>reg: //正则，当reg的值为字符串的时候，使用系统默认提供的正则，如果为正则表达式，则直接使用该正则<br>-</li>
+<li>url: //ajax check,用来校验帐号，用户名无重复等，返回值为json,{&quot;state&quot;: true/false}<br>-</li>
+<li>focusMsg //获取焦点时的提示信息<br>-</li>
+<li>errMsg //错误的提示信息</li>
+</ul>
+</blockquote>
+<h4 id="%E9%BB%98%E8%AE%A4%E6%8F%90%E4%BE%9B%E7%9A%84%E6%AD%A3%E5%88%99%E6%94%AF%E6%8C%81">默认提供的正则支持</h4>
+<pre><code class="hljs js">mail: <span class="hljs-regexp">/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/</span>, <span class="hljs-comment">//邮箱</span>
+china: <span class="hljs-regexp">/^[\u0391-\uFFE5]+$/</span>, <span class="hljs-comment">//中文</span>
+int: <span class="hljs-regexp">/^\d+$/</span>, <span class="hljs-comment">//数字</span>
+qq: <span class="hljs-regexp">/^[1-9]*[1-9][0-9]*$/</span>, <span class="hljs-comment">//QQ号码</span>
+phone: <span class="hljs-regexp">/^[1]([3]|[4]|[5]|[8])[0-9]{9}$/</span>, <span class="hljs-comment">//手机号码</span>
+user: <span class="hljs-regexp">/^[a-zA-Z][a-zA-Z0-9_]{4,15}$/</span>, <span class="hljs-comment">//验证用户名，长度在5~16之间，只能包含字符、数字和下划线</span>
+post: <span class="hljs-regexp">/[1-9]d{5}(?!d)/</span>, <span class="hljs-comment">//邮编</span>
+url: <span class="hljs-regexp">/^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;_~`@[\]\':+!]*([^\"\"])*$/</span>, <span class="hljs-comment">//url地址</span>
+idcard: <span class="hljs-regexp">/^\d{15}(\d{2}[A-Za-z0-9])?$/</span>, <span class="hljs-comment">//身份证号</span>
+ip: <span class="hljs-regexp">/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/g</span> <span class="hljs-comment">//IP</span>
+</code></pre>
+<h3 id="%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE">文件位置</h3>
+<pre><code class="hljs js">/modules/pizzaui/pizzaui/pizza.ui.validate.js
+</code></pre>
 
                 </div>
+                <h2>TAB切换</h2>
+                <div class="tab" id="tab1">
+                  <ul>
+                    <li class="active">选项1</li>
+                    <li>选项2</li>
+                    <li>选项3</li>
+                  </ul>
+                  <div class="item">1---你提到的这个问题也是这两天政协委员热议的题目。号贩子反映了一个问题，就是老百姓要看一个好医生真难，很不容易找到一个好医生。同时不是救人救命花4500块钱，而是一个门诊号花4500块钱。这反映了我们国家的医疗资源结构性矛盾严重错配，都集中在大医院，基层医院没有人去看病。这个事情的另外一方面也反映了我们政协委员的心疼，大家感到很委屈</div>
+                  <div class="item">2--国家规定的价格没有正确反映医生合理的劳动收入。我跟大家讲一个事情，昨天中午我们十多个政协委员坐在华北宾馆吃饭，我们十多个人中间有六个都是医学专家，大家都说他们的医院都有号贩子在炒他们的号，其中有一个神经外科医生，他的号是8000块钱，他是一分钱拿不到的，他也不知道炒到8000块钱，所以医生感到很委屈，他一天要看60到100个病人，病人花几千块钱到他这儿来，</div>
+                  <div class="item">3---刚才说抓黄牛，我们是支持的，依法逮捕这些人。但是抓这些黄牛和医生不能加号，同时有些医院取消门诊号，我们觉得抓人是对的，可是限制大可商榷，这是想用计划经济的手段断绝这个事情，大多数政协委员觉得是不可行的。这就像外科医生讲，外科医生治个病，腹腔脓肿，不能说切开引流了就解决问题了，切开排脓引流要好几天，过几天可能就复发了，复发还可能致命，</div>
+                </div>
+                <div class="tab" id="tab2">
+                  <ul>
+                    <li class="active">选项1</li>
+                    <li>选项2</li>
+                    <li>选项3</li>
+                  </ul>
+                  <div class="item">1---你提到的这个问题也是这两天政协委员热议的题目。号贩子反映了一个问题，就是老百姓要看一个好医生真难，很不容易找到一个好医生。同时不是救人救命花4500块钱，而是一个门诊号花4500块钱。这反映了我们国家的医疗资源结构性矛盾严重错配，都集中在大医院，基层医院没有人去看病。这个事情的另外一方面也反映了我们政协委员的心疼，大家感到很委屈</div>
+                  <div class="item">2--国家规定的价格没有正确反映医生合理的劳动收入。我跟大家讲一个事情，昨天中午我们十多个政协委员坐在华北宾馆吃饭，我们十多个人中间有六个都是医学专家，大家都说他们的医院都有号贩子在炒他们的号，其中有一个神经外科医生，他的号是8000块钱，他是一分钱拿不到的，他也不知道炒到8000块钱，所以医生感到很委屈，他一天要看60到100个病人，病人花几千块钱到他</div>
+                  <div class="item">3---刚才说抓黄牛，我们是支持的，依法逮捕这些人。但是抓这些黄牛和医生不能加号，同时有些医院取消门诊号，我们觉得抓人是对的，可是限制大可商榷，这是想用计划经济的手段断绝这个事情，大多数政协委员觉得是不可行的。这就像外科医生讲，外科医生治个病，腹腔脓肿，不能说切开引流了就解决问题了，切开排脓引流要好几天，过几天可能就复发了，复发还可能致命，所以要进行根治性的治疗，</div>
+                </div>
+                <div class="markdown">
+                    <h3 id="html">html</h3>
+<pre><code class="hljs js">   &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"tab"</span> id=<span class="hljs-string">"tab1"</span>&gt;
+                  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"active"</span>&gt;</span>选项1<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>选项2<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>选项3<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+                  <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+                  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item"</span>&gt;</span>1---<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+                  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item"</span>&gt;</span>2--<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+                  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"item"</span>&gt;</span>3---<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
+</code></pre>
+<h3 id="js">js</h3>
+<pre><code class="hljs js">$(<span class="hljs-string">"#tab1"</span>).pizzaTab({
+  activeCla: <span class="hljs-string">"active"</span>, <span class="hljs-comment">//默认标题选中样式</span>
+  itemCla: <span class="hljs-string">'item'</span>, <span class="hljs-comment">//默认正文区样式</span>
+  url: <span class="hljs-string">''</span><span class="hljs-comment">//ajax 获取数据的url地址</span>
+});
+</code></pre>
+<h3 id="%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE">文件位置</h3>
+<pre><code class="hljs js">/modules/pizzaui/pizzaui/pizza.ui.tab.js
+</code></pre>
 
-
+                </div>
+                <h2>模态框/弹出层</h2>
+                请参考贤心的<a href="http://layer.layui.com/" target="_blank">layer</a>
+                <h2>日历选择</h2>
+                请参考贤心的<a href="http://laydate.layui.com/" target="_blank">layDate</a>
         </div>
         <div class="rightside">
             <ul>
@@ -404,7 +445,10 @@ $(<span class="hljs-string">'#selectDemo'</span>).pizzaSelect({
             </ul>
         </div>
     </div>
-    <script>
+    <script type="text/javascript" charset="utf-8" src="/lib/mod.js"></script>
+<script type="text/javascript" charset="utf-8" src="/pkg/base.js"></script>
+<script type="text/javascript" charset="utf-8" src="/pkg/mcren_084c2.js"></script>
+<script>
     require('pizzaui');
     var $ = jQuery = require('jquery');
     //绑定age的下拉
@@ -413,76 +457,75 @@ $(<span class="hljs-string">'#selectDemo'</span>).pizzaSelect({
    	 	$('#selectDemoTips').html(obj.attr('data'));
    	 }
    });
+   $('#wordcount').wordsTip({
+     min:10,
+     max:200
+   });
    //绑定age1的下拉
+   $('#age').pizzaSelect({});
    $('#age1').pizzaSelect({});
 
    /*表单验证*/
 
-    $("#form1").pizzaValidate({
-      'fields':{
-        '#name':{
-            'must':true,
-            'minLength':5,
-            'maxLength':12,
-            focusMsg:"请输入用户名",
-            errMsg:'用户名不能为空或用户名必须在5-12个字符之间'
-      },
-        '#password':{
-            'must':true,
-                 'minLength':5,
-            'maxLength':12,
-            focusMsg:"请输入您的手机号码",
-            errMsg:'手机号码格式不合法'
-      },
-      '#age':{
-            'must':true,
-            'minLength':1,
-            'maxLength':16,
-            focusMsg:"请输入6-16位的密码",
-            errMsg:'密码不能为空且密码须在6-16个字符之间'
-      },
-        '#age1':{
-            'must':true,
-            'minLength':1,
-            'maxLength':16,
-            focusMsg:"请输入6-16位的密码",
-            errMsg:'密码不能为空且密码须在6-16个字符之间',
-            compMsg:'两次密码不一致'
-      },
-        '#des':{
-            'must':true,
-            'reg':'int',
-            focusMsg:"请输入您的年龄",
-            errMsg:'请输入数字'
-            }
-      },
-      ajaxFun:function(data) {
-      	  alert(data);
-
-            $.ajax({
-                type:'post',
-                url:'/ajax/ch',
-                success:function(msg) {
-                    //alert(msg);
-                }
-            });
-      }
-    });
-
-   /* -- 城市选择 -- */
-   $('#area-1').pizzaArea({
-     ajaxUrl: 'index/get'
+   $("#form1").pizzaValidate({
+     'fields': {
+       '#name': {
+         'must': true,
+         'minLength': 5,
+         'maxLength': 12,
+         focusMsg: "请输入用户名",
+         errMsg: '用户名不能为空或用户名必须在5-12个字符之间'
+       },
+       '#password': {
+         'must': true,
+         'minLength': 5,
+         'maxLength': 12,
+         focusMsg: "请输入6-16位的密码",
+         errMsg: '密码不能为空且密码须在6-16个字符之间'
+       },
+       '#age': {
+         'must': true,
+         'minLength': 1,
+         'maxLength': 16,
+         focusMsg: "请选择您的年龄",
+         errMsg: '请选择您的年龄'
+       },
+       '#age1': {
+         'must': true,
+         'minLength': 1,
+         'maxLength': 16,
+         focusMsg: "请选择您的年龄",
+         errMsg: '请选择您的年龄'
+       },
+       '#des': {
+         'must': true,
+         'minLength': 1,
+         'maxLength': 500,
+         focusMsg: "请输入描述",
+         errMsg: '用户名不能为空或用户名必须在1-500个字符之间'
+       }
+     },
+     ajaxFun: function(data) {
+       alert("获取到的数据：" + data);
+       return;
+       $.ajax({
+         type: 'post',
+         url: '/ajax/ch',
+         success: function(msg) {
+           //alert(msg);
+         }
+       });
+     }
    });
-   $('#area-2').pizzaArea({
-      type: false,
-      ajaxUrl: 'index/get'
-  });//a
+
+   $("#tab1").pizzaTab();
+   $("#tab2").pizzaTab();
     </script>
     <script>
 var rightmenu = require('rightmenu/rightmenu');
 rightmenu.init();
 </script>
 
-</body>
+<script type="text/javascript" charset="utf-8" src="http://192.168.1.43:81314/livereload.js"></script></body>
 
 </html>

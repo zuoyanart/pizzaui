@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>名场组件使用示例</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="import" href="/widget/head/head.html?__inline">
+</head>
+
+<body>
+    <link rel="import" href="/widget/siteheader/header.html?__inline">
+    <div class="main">
+        <div class="leftside">
+            <h2>下拉菜单</h2>
+            <hr>
+                <select name="city" id="selectDemo">
+                    <option value="">请选择城市</option>
+                    <option value="Beijing">北京</option>
+                    <option value="Shanghai">上海</option>
+                    <option value="Guangzhou">广州</option>
+                </select>
+                <br/><br/>您选择了：<i id="selectDemoTips"></i>
+                <div class="markdown">
+                    <link rel="import" href="/md/webpartbase1.md?__inline">
+                </div>
+                <h2>textarea计数统计输入框</h2>
+                <textarea name="" id="wordcount"></textarea>
+                <p style="margin-top:10px;font-size:14px;text-align:right;" id="wordcount-tip"></p>
+                <div class="markdown">
+                    <link rel="import" href="/md/webpartbase2.md?__inline">
+                </div>
+                <hr>
+                <h2>表单验证</h2>
+                <form id="form1">
+                    <div><label for="">Name：</label><input type="text" id="name" name="name"></div>
+                    <div><label for="">Password：</label><input type="password" id="password" name="password"></div>
+                    <div style="height:35px;margin-top: 20px;">
+                        <label for="">checkbox：</label>
+                        <label class="checkgroup">
+                            <input type="checkbox" id="text1" name="check">
+                            <label for="text1"></label>测试1</label>
+                        <label class="checkgroup">
+                            <input type="checkbox" id="text2" name="check">
+                            <label for="text2"></label>测试2</label>
+                        <label class="checkgroup">
+                            <input type="checkbox" id="text3" name="chexk">
+                            <label for="text3"></label>测试3</label>
+                        <label class="checkgroup">
+                            <input type="checkbox" id="text4" name="check">
+                            <label for="text4"></label>测试4</label>
+                    </div>
+                    <div style="height:35px;">
+                        <label for="">radiobox：</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text11" name="radio" checked="checked">
+                            <label for="text11"></label>测试1</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text21" name="radio">
+                            <label for="text21"></label>测试2</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text31" name="radio">
+                            <label for="text31"></label>测试3</label>
+                        <label class="radiogroup">
+                            <input type="radio" id="text41" name="radio">
+                            <label for="text41"></label>测试4</label>
+                    </div>
+                    <div>
+                        <label>请选择年龄：</label>
+                        <select id="age" name="age" style="width:200px;">
+                            <option value="" selected="selected">请选择年龄</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                        </select>&nbsp;&nbsp;&nbsp;&nbsp; -- &nbsp;&nbsp;&nbsp;&nbsp;
+                        <select id="age1" name="age1" style="width:200px;">
+                            <option value="" selected="selected">请选择年龄</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">Des：</label>
+                        <textarea rows="6" id="des" name="des"></textarea>
+                    </div>
+                    <br>
+                    <div>
+                        <input type="submit" class="btn btn-primary" value="提交" />
+                        </button>
+                        <button class="btn btn-info">重置</button>
+                    </div>
+                </form>
+                <div class="markdown">
+                    <link rel="import" href="/md/webpartbase3.md?__inline">
+                </div>
+                <h2>TAB切换</h2>
+                <div class="tab" id="tab1">
+                  <ul>
+                    <li class="active">选项1</li>
+                    <li>选项2</li>
+                    <li>选项3</li>
+                  </ul>
+                  <div class="item">1---你提到的这个问题也是这两天政协委员热议的题目。号贩子反映了一个问题，就是老百姓要看一个好医生真难，很不容易找到一个好医生。同时不是救人救命花4500块钱，而是一个门诊号花4500块钱。这反映了我们国家的医疗资源结构性矛盾严重错配，都集中在大医院，基层医院没有人去看病。这个事情的另外一方面也反映了我们政协委员的心疼，大家感到很委屈</div>
+                  <div class="item">2--国家规定的价格没有正确反映医生合理的劳动收入。我跟大家讲一个事情，昨天中午我们十多个政协委员坐在华北宾馆吃饭，我们十多个人中间有六个都是医学专家，大家都说他们的医院都有号贩子在炒他们的号，其中有一个神经外科医生，他的号是8000块钱，他是一分钱拿不到的，他也不知道炒到8000块钱，所以医生感到很委屈，他一天要看60到100个病人，病人花几千块钱到他这儿来，</div>
+                  <div class="item">3---刚才说抓黄牛，我们是支持的，依法逮捕这些人。但是抓这些黄牛和医生不能加号，同时有些医院取消门诊号，我们觉得抓人是对的，可是限制大可商榷，这是想用计划经济的手段断绝这个事情，大多数政协委员觉得是不可行的。这就像外科医生讲，外科医生治个病，腹腔脓肿，不能说切开引流了就解决问题了，切开排脓引流要好几天，过几天可能就复发了，复发还可能致命，</div>
+                </div>
+                <div class="tab" id="tab2">
+                  <ul>
+                    <li class="active">选项1</li>
+                    <li>选项2</li>
+                    <li>选项3</li>
+                  </ul>
+                  <div class="item">1---你提到的这个问题也是这两天政协委员热议的题目。号贩子反映了一个问题，就是老百姓要看一个好医生真难，很不容易找到一个好医生。同时不是救人救命花4500块钱，而是一个门诊号花4500块钱。这反映了我们国家的医疗资源结构性矛盾严重错配，都集中在大医院，基层医院没有人去看病。这个事情的另外一方面也反映了我们政协委员的心疼，大家感到很委屈</div>
+                  <div class="item">2--国家规定的价格没有正确反映医生合理的劳动收入。我跟大家讲一个事情，昨天中午我们十多个政协委员坐在华北宾馆吃饭，我们十多个人中间有六个都是医学专家，大家都说他们的医院都有号贩子在炒他们的号，其中有一个神经外科医生，他的号是8000块钱，他是一分钱拿不到的，他也不知道炒到8000块钱，所以医生感到很委屈，他一天要看60到100个病人，病人花几千块钱到他</div>
+                  <div class="item">3---刚才说抓黄牛，我们是支持的，依法逮捕这些人。但是抓这些黄牛和医生不能加号，同时有些医院取消门诊号，我们觉得抓人是对的，可是限制大可商榷，这是想用计划经济的手段断绝这个事情，大多数政协委员觉得是不可行的。这就像外科医生讲，外科医生治个病，腹腔脓肿，不能说切开引流了就解决问题了，切开排脓引流要好几天，过几天可能就复发了，复发还可能致命，所以要进行根治性的治疗，</div>
+                </div>
+                <div class="markdown">
+                    <link rel="import" href="/md/webpartbase4.md?__inline">
+                </div>
+                <h2>模态框/弹出层</h2>
+                请参考贤心的<a href="http://layer.layui.com/" target="_blank">layer</a>
+                <h2>日历选择</h2>
+                请参考贤心的<a href="http://laydate.layui.com/" target="_blank">layDate</a>
+        </div>
+        <div class="rightside">
+            <ul>
+                <li><a href="#nav-1">主体字体</a></li>
+                <li><a href="#nav-2">副题</a></li>
+                <li><a href="#nav-3">超练级</a></li>
+                <li><a href="#nav-4">按钮</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+    require('pizzaui');
+    var $ = jQuery = require('jquery');
+    //绑定age的下拉
+   $('#selectDemo').pizzaSelect({
+   	 onChange: function(obj) {
+   	 	$('#selectDemoTips').html(obj.attr('data'));
+   	 }
+   });
+   $('#wordcount').wordsTip({
+     min:10,
+     max:200
+   });
+   //绑定age1的下拉
+   $('#age').pizzaSelect({});
+   $('#age1').pizzaSelect({});
+
+   /*表单验证*/
+
+   $("#form1").pizzaValidate({
+     'fields': {
+       '#name': {
+         'must': true,
+         'minLength': 5,
+         'maxLength': 12,
+         focusMsg: "请输入用户名",
+         errMsg: '用户名不能为空或用户名必须在5-12个字符之间'
+       },
+       '#password': {
+         'must': true,
+         'minLength': 5,
+         'maxLength': 12,
+         focusMsg: "请输入6-16位的密码",
+         errMsg: '密码不能为空且密码须在6-16个字符之间'
+       },
+       '#age': {
+         'must': true,
+         'minLength': 1,
+         'maxLength': 16,
+         focusMsg: "请选择您的年龄",
+         errMsg: '请选择您的年龄'
+       },
+       '#age1': {
+         'must': true,
+         'minLength': 1,
+         'maxLength': 16,
+         focusMsg: "请选择您的年龄",
+         errMsg: '请选择您的年龄'
+       },
+       '#des': {
+         'must': true,
+         'minLength': 1,
+         'maxLength': 500,
+         focusMsg: "请输入描述",
+         errMsg: '用户名不能为空或用户名必须在1-500个字符之间'
+       }
+     },
+     ajaxFun: function(data) {
+       alert("获取到的数据：" + data);
+       return;
+       $.ajax({
+         type: 'post',
+         url: '/ajax/ch',
+         success: function(msg) {
+           //alert(msg);
+         }
+       });
+     }
+   });
+
+   $("#tab1").pizzaTab();
+   $("#tab2").pizzaTab();
+    </script>
+    <link rel="import" href="/widget/footer/footer.html?__inline">
+</body>
+
+</html>

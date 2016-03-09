@@ -1,0 +1,60 @@
+2016-03-09 18:07:45: -- Analysis Started by On File Change Incremental
+2016-03-09 18:07:45: Do Not Propagate Deletions: 1-way deletions reverted: 5
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui/memberInfo.ejs: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui/pizza.ui.area.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui/pizza.ui.memberInfo.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui/pizza.ui.placeholder.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui/pizza.ui.select.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui/pizza.ui.show.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui/pizza.ui.store.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui/pizza.ui.tab.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui/pizza.ui.tip4detail.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui/pizza.ui.validate.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui/pizza.ui.wordsTip.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: /modules/pizzaui/pizzaui/合并js.bat: 警告：旧文件将替换新文件
+2016-03-09 18:07:45: 变更：31， 冲突：， 复制时间：， 复制状态：/， 错误： , All: 117
+2016-03-09 18:07:45: Left to Right: Copy File: 31 
+2016-03-09 18:07:45: == Sync Started by On File Change Incremental
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui'
+- 错误: Error copying file: BlockCopy after Denied/Locked: Cannot open local file 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui' for read: 拒绝访问。  (error 5)
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/css/button.css' -> 'F:/NodeJs/pizzaui-test/static/css/button.css'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/css/font-awesome.css' -> 'F:/NodeJs/pizzaui-test/static/css/font-awesome.css'
+2016-03-09 18:07:45: 新建复制 'F:/NodeJs/pizzaui/css/font-awesome.min.css' -> 'F:/NodeJs/pizzaui-test/static/css/font-awesome.min.css'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/css/ie8.css' -> 'F:/NodeJs/pizzaui-test/static/css/ie8.css'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/css/pizza.css' -> 'F:/NodeJs/pizzaui-test/static/css/pizza.css'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/laydate/laydate.js' -> 'F:/NodeJs/pizzaui-test/static/modules/laydate/laydate.js'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/laydate/need/laydate.css' -> 'F:/NodeJs/pizzaui-test/static/modules/laydate/need/laydate.css'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/laydate/skins/danlan/laydate.css' -> 'F:/NodeJs/pizzaui-test/static/modules/laydate/skins/danlan/laydate.css'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/extend/layer.ext.js' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/extend/layer.ext.js'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/layer.js' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/layer.js'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/skin/default/icon.png' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/skin/default/icon.png'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/skin/layer.css' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/skin/layer.css'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/layer/skin/layer.ext.css' -> 'F:/NodeJs/pizzaui-test/static/modules/layer/skin/layer.ext.css'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzalayer/layer.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzalayer/layer.js'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzatools/pizza.tools.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzatools/pizza.tools.js'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizza.ui.js' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizza.ui.js'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/store/pizza.ui.store.js' -> 'F:/NodeJs/pizzaui-test/static/modules/store/pizza.ui.store.js'
+2016-03-09 18:07:45: 覆盖复制 'F:/NodeJs/pizzaui/modules/xss/xss.js' -> 'F:/NodeJs/pizzaui-test/static/modules/xss/xss.js'
+2016-03-09 18:07:45: ===== ：同步完毕。时间：00:00:00，速度： 0 字节/s =====, 项目同步未必： 18，错误： 1
+2016-03-09 18:07:46: -- Analysis Started by On File Change PostSync Re-Analyze
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui/memberInfo.ejs: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui/pizza.ui.area.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui/pizza.ui.memberInfo.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui/pizza.ui.placeholder.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui/pizza.ui.select.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui/pizza.ui.show.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui/pizza.ui.store.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui/pizza.ui.tab.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui/pizza.ui.tip4detail.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui/pizza.ui.validate.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui/pizza.ui.wordsTip.js: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: /modules/pizzaui/pizzaui/合并js.bat: 警告：旧文件将替换新文件
+2016-03-09 18:07:46: 变更：13， 冲突：， 复制时间：， 复制状态：/， 错误： , All: 117
+2016-03-09 18:07:46: Left to Right: Copy File: 13 
+2016-03-09 18:07:46: == Sync Started by On File Change PostSync Re-Analyze
+2016-03-09 18:07:46: 覆盖复制 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui' -> 'F:/NodeJs/pizzaui-test/static/modules/pizzaui/pizzaui'
+- 错误: Error copying file: BlockCopy after Denied/Locked: Cannot open local file 'F:/NodeJs/pizzaui/modules/pizzaui/pizzaui' for read: 拒绝访问。  (error 5)
+2016-03-09 18:07:46: ===== ：同步完毕。时间：00:00:00，速度： 0 字节/s =====, 项目同步未必： ，错误： 1
+2016-03-09 18:07:46: 

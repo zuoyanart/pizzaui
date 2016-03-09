@@ -1,0 +1,1 @@
+define("pizzajs",function(){!function(n){n.fn.animate=function(){}}($)});
