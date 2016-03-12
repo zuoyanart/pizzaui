@@ -433,12 +433,12 @@ var jQuery = require('jquery');
       if (options.option.selected != undefined) {
         selected = options.option.selected.value;
         selectedText = options.option.selected.name;
-      } else if (selectedObj.length > 0) {
-        selected = selectedObj.val();
-        selectedText = selectedObj.text();
       } else if (o.attr('val')) {
         selected = o.attr('val');
         selectedText = o.find('option[value="' + selected + '"]').text();
+      } else if (selectedObj.length > 0) {
+        selected = selectedObj.val();
+        selectedText = selectedObj.text();
       } else {
         selected = o.find('option').first().attr('value');
         selectedText = o.find('option').first().text();
