@@ -2,31 +2,31 @@
  这是一个通用的ui框架，包含网页常用的元素和组件。
 
 demo地址： [http://ui.zuoyan.space](http://ui.zuoyan.space "pizzaUI")
- 
+
 ##构建
 less-->css
 
 fis3---->模块化
 
- 
+
 
 ##插件
 > pizza.ui.area.js //城市选择
-> 
+>
 > pizza.ui.select.js //下拉模拟
-> 
+>
 > pizza.ui.store.js //本地化存储
-> 
+>
 > pizza.ui.tab.js  //tab切换
-> 
+>
 > pizza.ui.validate.js //表单验证
-> 
+>
 > pizza.ui.wordsTip.js //字数提示
-> 
+>
 > pizza.ui.placeholder.js //placeholder
-> 
+>
 > layer //通用层提示插件
-> 
+>
 > tools 工具类
 
 
@@ -34,21 +34,21 @@ fis3---->模块化
 #### 实现的dom方法
 注意：标记*的为暂时未实现
 > html
-> 
+>
 > addClass
 
 > removeClass
-> 
+>
 > after
-> 
+>
 > get
-> 
+>
 > append
-> 
+>
 > appendTo
-> 
+>
 > attr
-> 
+>
 >befer
 >
 >children*
@@ -118,6 +118,7 @@ fis3---->模块化
 >
 >toggleClass*
 >
+> prepend *
 >val
 >
 >width
@@ -135,4 +136,3 @@ data
 ####事件
 on
 off
-
