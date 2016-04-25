@@ -1,4 +1,1 @@
-.footer{
-  width: 100%;
-  height: 100px;
-}
+.footer{width:100%;height:180px;margin:138px auto 10px;border:1px solid #e6ecf5;padding:20px 41px;clear:both;background-color:#555}.footer>div{width:1000px;height:150px;margin:0 auto;text-align:left;color:#eee;line-height:26px}.footer>div>p{float:left;width:500px;height:150px}.footer>div>p a{color:#eee}

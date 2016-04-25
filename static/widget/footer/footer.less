@@ -1,11 +1,27 @@
 @import "../../less/variables.less";
 
 .footer{
-	width: 1000px;
-	height: 222px;
+	width: 100%;
+	height: 180px;
 	margin: 138px auto 10px;
-	border:9px solid @bgcolor-place;
-	border-radius: 5px;
-	padding: 46px 41px;
+	border:1px solid @bgcolor-place;
+	padding: 20px 41px;
 	clear: both;
+	background-color: #555;
+	& > div {
+		width: 1000px;
+		height: 150px;
+		margin: 0 auto;
+		text-align:left;
+		color:#eeeeee;
+		line-height:26px;
+		& > p{
+			float:left;
+			width: 500px;
+			height: 150px;
+			a{
+				color:#eee;
+			}
+		}
+	}
 }
